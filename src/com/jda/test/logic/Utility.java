@@ -141,5 +141,28 @@ public class Utility {
 		}
 		
 	}
+	public int getWinCount(int stake, int goal, int n){
+		int winCount= 0 ;
+		for(int i=0;i<n;i++){
+			int currentValue = stake;
+			
+			while(true){
+				if(currentValue == goal){
+					winCount++;
+					break;
+				}
+				if(currentValue== 0){
+					break;
+				}
+				if(Math.random()<0.5){
+					currentValue--;
+				}
+				else{
+					currentValue++;
+				}
+			}
+		}
+		return winCount;
+	}
 
 }
