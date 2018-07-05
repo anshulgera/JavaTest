@@ -1,20 +1,22 @@
 package com.jda.test.code;
 import com.jda.test.logic.*;
 
+/**
+ * @author Anshul Gera
+ *
+ */
 public class CoinToss {
 	
-	public double getPercentage(int n, int tailCount){
-		double result = tailCount/n;
-		result  *= 100.00;
-		return result;
-		
-	}
 	
+	/**Math.random
+	 * Value<0.5 Tails win otherwise Heads win
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Utility utility = new Utility();
-		int n = utility.takeInputInteger();
-		int tailCount = utility.getTailCount(n);
-		float tailPercentage = ((float)tailCount/n)*100;
+		int number = utility.takeInputInteger();
+		int tailCount = utility.getTailCount(number);
+		float tailPercentage = ((float)tailCount/number)*100;
 		float headPercentage = (float)100 - tailPercentage;
 		System.out.println("Heads percentage : " + headPercentage + " Vs " + "Tails percentage : " + tailPercentage);
 		

@@ -1,11 +1,18 @@
 package com.jda.test.code;
 import com.jda.test.logic.*;
+/**
+ * @author anshul gera
+ *
+ */
 public class HarmonicNumber {
 
+	/**
+	 * @param Sum of harmonic series upto 1/N.
+	 */
 	public static void main(String[] args) {
-		Utility ut = new Utility();
-		int n = ut.inputHarmonicNumber();
-		float result = ut.nthHarmonicNumber(n);
+		Utility utility = new Utility();
+		int number = utility.inputHarmonicNumber();
+		float result = utility.nthHarmonicNumber(number);
 		System.out.println(result);
 
 	}

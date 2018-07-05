@@ -1,5 +1,6 @@
 package com.jda.test.code;
-import com.jda.test.logic.*;
+
+import com.jda.test.logic.Utility;
 
 public class Replace {
 

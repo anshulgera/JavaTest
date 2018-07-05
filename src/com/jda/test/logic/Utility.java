@@ -13,6 +13,29 @@ public class Utility {
 		scanner = new Scanner(System.in);
 
 	}
+	public int takeInteger(){
+		int n = scanner.nextInt();
+		return n;
+	}
+	
+	public int inputTernary(){
+		int input;
+		while(true){
+			input =  scanner.nextInt();
+			if(input>0 || input<4){
+				return input;
+			}
+			else{
+				System.out.println("Enter valid input.");
+			}
+		}
+	}
+	
+	public float calcPercentage(int x,int y){
+		
+		return ((float)x/y)*(float)100;
+		
+	}
 	
 	public String takeInputString(){
 		String name = new String();
@@ -164,5 +187,6 @@ public class Utility {
 		}
 		return winCount;
 	}
+	
 
 }
