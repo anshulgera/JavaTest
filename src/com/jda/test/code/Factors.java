@@ -11,7 +11,7 @@ public class Factors {
 	 */
 	public static void main(String[] args) {
 		Utility ut = new Utility();
-		int n = ut.takeInputInteger();
+		int n = ut.inputPositiveInteger();
 		ut.printPrimeFactors(n);
 
 	}

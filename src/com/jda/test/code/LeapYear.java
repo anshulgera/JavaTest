@@ -5,7 +5,7 @@ public class LeapYear {
 
 	public static void main(String[] args) {
 		Utility utility = new Utility();
-		int year = utility.takeInputYear();
+		int year = utility.inputYear();
 		boolean isLeapYear = utility.checkLeapYear(year);
 		if(isLeapYear) {
 			System.out.println(year + " is a leap year.");

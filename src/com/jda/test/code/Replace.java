@@ -9,7 +9,7 @@ public class Replace {
 		String template = "Hello <<UserName>>, How are you?";
 		Utility utility = new Utility();
 		System.out.println("Enter your name: ");
-		String name = utility.takeInputString();
+		String name = utility.inputString();
 		template = utility.replaceName(template, name);
 		System.out.println(template);
 

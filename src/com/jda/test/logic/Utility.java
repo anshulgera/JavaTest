@@ -1,5 +1,7 @@
 package com.jda.test.logic;
 
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -9,11 +11,10 @@ public class Utility {
 	Scanner scanner;
 	
 	public Utility(){
-	
 		scanner = new Scanner(System.in);
-
 	}
-	public int takeInteger(){
+	
+	public int inputInteger(){
 		int n = scanner.nextInt();
 		return n;
 	}
@@ -22,7 +23,7 @@ public class Utility {
 		int input;
 		while(true){
 			input =  scanner.nextInt();
-			if(input>0 || input<4){
+			if(input>0 && input<4){
 				return input;
 			}
 			else{
@@ -37,7 +38,7 @@ public class Utility {
 		
 	}
 	
-	public String takeInputString(){
+	public String inputString(){
 		String name = new String();
 		while(true){
 		 name = scanner.nextLine();
@@ -51,7 +52,7 @@ public class Utility {
 	return name;
 	}
 	
-	public int takeInputInteger(){
+	public int inputPositiveInteger(){
 		int n;
 		while(true){
 			n = scanner.nextInt();
@@ -82,7 +83,7 @@ public class Utility {
 		return tailCount;
 	}
 
-	public int takeInputYear(){
+	public int inputYear(){
 		int n;
 		while(true){
 			n = scanner.nextInt();
@@ -128,7 +129,7 @@ public class Utility {
 		return;
 	}
 	
-	public int inputHarmonicNumber() {
+	public int inputNaturalNumber() {
 		int n;
 		while(true) {
 			n = scanner.nextInt();
@@ -188,5 +189,119 @@ public class Utility {
 		return winCount;
 	}
 	
+	public void handleIntegerArray2D(int row, int column){
+		
+		Utility utility = new Utility();
+		PrintWriter out = new PrintWriter(System.out);
+		int[][] data = new int[row][column];
+		for(int i=0;i<row;i++){
+			for(int j = 0;j<column;j++){
+				data[i][j] = utility.inputInteger();
+			}
+		}
+		for(int i=0;i<row;i++){
+			for(int j=0;j<column;j++){
+				out.print(data[i][j] + " ");
+			}
+			out.println();
+		}
+		out.flush();
+		out.close();
+		return;
+	}
+	public double inputDouble(){
+		String input = scanner.next();
+		while(true){
+			try{
+				double value = Double.parseDouble(input);
+				return value;
+			}
+			catch(NumberFormatException e){
+				System.out.println("Enter valid input");
+				input = scanner.next();
+			}
+		}
+	}
+	public void handleDoubleArray2D(int row, int column){
+		
+		PrintWriter out = new PrintWriter(System.out); 
+		double[][] data = new double[row][column];
+		for(int i=0;i<row;i++){
+			for(int j=0;j<column;j++){
+				data[i][j] = inputDouble();
+			}
+		}
+			for(int i = 0;i<row;i++){
+				for(int j = 0;j<column;j++){
+					out.print(data[i][j] + " ");
+				}
+				out.println();
+			}
+			out.flush();
+			out.close();
+		}
+	public void handleBooleanArray2D(int row, int column) {
+		
+		PrintWriter out =new PrintWriter(System.out);
+		boolean[][] data = new boolean[row][column];
+		for(int i=0;i<row;i++){
+			for(int j=0;j<column;j++){
+				data[i][j] = inputBoolean();
+			}
+		}
+		for(int i=0;i<row;i++){
+			for(int j=0;j<column;j++){
+				out.print(data[i][j] + " ");
+			}
+			out.println();
+		}
+		out.flush();
+		out.close();
+	}
+	
+	private boolean inputBoolean() {
 
+		String input = scanner.next();
+		while(true){
+			try{
+				boolean value = Boolean.parseBoolean(input);
+				return value;
+			}
+			catch(Exception e){
+				System.out.println("Enter valid input.");
+				input = scanner.next();
+			}
+		}
+	}
+
+	public void getTriplets(int array[], int size) {
+		int sum = 0;
+		int distinctTriplets = 0;
+		int counter = 0;
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		for(int i = 0;i<size-2;i++){
+			for(int j=0;j<size-1;j++){
+				for(int k=0;k<size;k++){
+					if(array[i] + array[j] + array[k] == sum){
+						distinctTriplets++;
+						result.add(array[i]);
+						result.add(array[j]);
+						result.add(array[k]);
+					}
+				}
+			}
+		}
+		
+		System.out.println("Distinct Triplets : " + distinctTriplets);
+		
+		for(int i=0;i<result.size();i++){
+			System.out.print(result.get(i) + " ");
+			counter++;
+			if(counter==3){
+				System.out.println();
+				counter = 0;
+				}
+			}
+	}
+	
 }

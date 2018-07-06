@@ -11,7 +11,7 @@ public class HarmonicNumber {
 	 */
 	public static void main(String[] args) {
 		Utility utility = new Utility();
-		int number = utility.inputHarmonicNumber();
+		int number = utility.inputPositiveInteger();
 		float result = utility.nthHarmonicNumber(number);
 		System.out.println(result);
 

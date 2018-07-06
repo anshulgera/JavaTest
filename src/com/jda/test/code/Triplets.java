@@ -1,19 +1,16 @@
 package com.jda.test.code;
-import java.util.Arrays;
+import com.jda.test.logic.Utility;
 
-import com.jda.test.logic.*;
 public class Triplets {
 
 	public static void main(String[] args) {
-		Utility ut = new Utility();
-		int n = ut.takeInputInteger();
-		int[] arr = new int[n];
-		for(int i=0;i<n;i++){
-			arr[i] = ut.takeInteger();
+		Utility utility = new Utility();
+		int size = utility.inputPositiveInteger();
+		int[] array = new int[size];
+		for(int i=0;i<size;i++){
+			array[i] = utility.inputInteger();
 		}
-		Arrays.sort(arr);
-		int triplets = getTriplets(arr, n);
-		
+		utility.getTriplets(array, size);
 
 	}
 

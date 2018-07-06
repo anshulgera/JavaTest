@@ -40,7 +40,7 @@ public class CouponNumbers {
 	
 	public static void main(String[] args) {
 		Utility ut = new Utility();
-		int n = ut.takeInputInteger();
+		int n = ut.inputPositiveInteger();
 		int count  = getRandomNoCount(n);
 		System.out.println("Random numbers needed : " + count );
 	}

@@ -8,27 +8,20 @@ public class Array2D {
 		System.out.println("1.Integer 2.Doubles 3.Boolean");
 		int choice = utility.inputTernary();
 		System.out.println("Enter row and column size.");
-		int row = utility.takeInputInteger();
-		int column = utility.takeInputInteger();
+		int row = utility.inputPositiveInteger();
+		int column = utility.inputPositiveInteger();
 		System.out.println("Enter values");
 		switch(choice){
 			case 1:
-				int[][] data = new int[row][column];
-				for(int i=0;i<row;i++){
-					for(int j = 0;j<column;j++){
-						data[i][j] = utility.takeInteger();
-					}
-				}
+				utility.handleIntegerArray2D(row, column);
 				break;
 			case 2:
-				double[][] data = new double[row][column];
-				for(int i=0;i<row;i++){
-					for(j=0;j<column;j++){
-						data[i][j] = utility.takeDouble();
-					}
-				}
+				utility.handleDoubleArray2D(row, column);
 				break;
-		}
+			case 3:
+				utility.handleBooleanArray2D(row, column);
+				break;
 	}
-
+		
+	}
 }

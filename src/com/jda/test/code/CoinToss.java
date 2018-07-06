@@ -14,7 +14,7 @@ public class CoinToss {
 	 */
 	public static void main(String[] args) {
 		Utility utility = new Utility();
-		int number = utility.takeInputInteger();
+		int number = utility.inputPositiveInteger();
 		int tailCount = utility.getTailCount(number);
 		float tailPercentage = ((float)tailCount/number)*100;
 		float headPercentage = (float)100 - tailPercentage;

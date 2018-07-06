@@ -8,12 +8,12 @@ public class Gambler {
 	
 	public static void main(String[] args){
 		
-		Utility ut = new Utility();
-		int n = ut.takeInputInteger();
-		int stake = ut.takeInputInteger();
-		int goal = ut.takeInputInteger();
-		int winCount =ut.getWinCount(stake,goal,n);
-		float winPercentage = ut.calcPercentage(winCount,n);
+		Utility utility = new Utility();
+		int numberOfGames = utility.inputPositiveInteger();
+		int stake = utility.inputPositiveInteger();
+		int goal = utility.inputPositiveInteger();
+		int winCount =utility.getWinCount(stake,goal,numberOfGames);
+		float winPercentage = utility.calcPercentage(winCount,numberOfGames);
 		System.out.println("Number of wins : " + winCount);
 		System.out.println("Winning percentage : " + winPercentage );
 		
