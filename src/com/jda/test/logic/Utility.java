@@ -37,8 +37,11 @@ public class Utility {
 		return ((float)x/y)*(float)100;
 		
 	}
-	
 	public String inputString(){
+		return scanner.nextLine();
+	}
+	
+	public String inputStringMin3(){
 		String name = new String();
 		while(true){
 		 name = scanner.nextLine();
@@ -306,6 +309,31 @@ public class Utility {
 
 	public double calcDistance(int x, int y) {
 		return  Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+		
+	}
+
+	public void permute(String input, int left, int right) {
+		Utility utility  = new Utility();
+		if(left == right){
+			System.out.println(input);
+		}else{
+			for(int i = left;i<=right;i++){
+				input = utility.swap(input, left, i);
+				utility.permute(input, left+1,right);
+				input = utility.swap(input, left ,i);
+				
+			}
+		}
+		
+	}
+
+	private String swap(String input, int i, int j) {
+		
+		char[] array = input.toCharArray();
+		char temp =  array[i];
+		array[i] = array[j];
+		array[j] = temp;
+		return String.valueOf(array);
 		
 	}
 	
