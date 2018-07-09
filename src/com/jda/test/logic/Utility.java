@@ -336,5 +336,23 @@ public class Utility {
 		return String.valueOf(array);
 		
 	}
+	public void pressAnyKeyToStartStop(){
+		try{
+			System.in.read();
+		}
+		catch(Exception e){}
+	return;
+	}
+	public void printBoard(char[][] board, int row, int column){
+		for(int i = 0;i<row;i++){
+			for(int j = 0;j<column;j++){
+			System.out.print(board[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+	public void playTicTacToe(char[][] board, int row, int column){
+		return;
+	}
 	
 }
