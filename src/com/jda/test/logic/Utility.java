@@ -354,5 +354,57 @@ public class Utility {
 	public void playTicTacToe(char[][] board, int row, int column){
 		return;
 	}
+
+	public void calcSqRoot(int a, int b, int c) {
+		float delta = (float) (Math.pow(b, 2) - 4*a*c);
+		if(delta<0){
+			System.out.println("Imaginary roots as b^2-4ac is egative.");
+		}
+		else if(delta == 0){
+			float result = (float) (-b)/(2*a);
+			System.out.println("As delta is zero, the roots are " + result +" and " + (-result));
+		}
+		else{
+			float resultA = (float) (-b +Math.sqrt(delta))/(2*a);
+			float resultB = (float)(-b-Math.sqrt(delta))/(2*a);
+			System.out.println("Roots are " + resultA + " and " + resultB);
+		}
+		
+		
+		
+	}
+
+	public int inputTemperatureinF() {
+		System.out.println("Enter the temperature : ");
+		int input = scanner.nextInt();
+		while(true){
+			if(Math.abs(input)<=50){
+				return input;
+			}
+			else{
+				System.out.println("Temperature should be between -50 and 50 degree Fahrenheit");
+				input = scanner.nextInt();
+			}
+		}
+	}
+
+	public int inputWindSpeedinMPS() {
+		System.out.println("Enter the wind speed : ");
+		int input = scanner.nextInt();
+		while(true){
+			if(input>3 && input<120){
+				return input;
+			}
+			else{
+				System.out.println("Wind speed should be between 3 and 120mps.");
+				input = scanner.nextInt();
+			}
+		}
+	}
+
+	public void calcWindChill(int temp, int wind) {
+		double windChill = 35.74 + 0.6215 *(double) temp + (0.4275*temp - 35.75) * Math.pow(wind,  0.16);
+		System.out.println("WindChill is " + windChill);
+	}
 	
 }
