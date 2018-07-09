@@ -2,6 +2,7 @@ package com.jda.test.logic;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -38,7 +39,17 @@ public class Utility {
 		
 	}
 	public String inputString(){
-		return scanner.nextLine();
+		
+		String input =  scanner.nextLine();
+		while(true){
+			if(input.length()>0){
+				return input;
+			}
+			else{
+				System.out.println("String is empty. Enter again.");
+				input = scanner.nextLine();
+			}
+		}
 	}
 	
 	public String inputStringMin3(){
@@ -406,5 +417,95 @@ public class Utility {
 		double windChill = 35.74 + 0.6215 *(double) temp + (0.4275*temp - 35.75) * Math.pow(wind,  0.16);
 		System.out.println("WindChill is " + windChill);
 	}
+
+	public void checkForAnagram(String a, String b) {
+		
+		//remove spaces
+		a = a.replaceAll("\\s+","");
+		b = b.replaceAll("\\s+","");
+		a = sortString(a.toCharArray(), a.length());
+		b = sortString(b.toCharArray(), b.length());
+		if(a.equals(b)){
+			System.out.print("Strings are anagrams.");
+		}
+		else{
+			System.out.println("Strings are not anagrams.");
+		}
+		
+	}
+
+	private String sortString(char[] string, int length) {
+		
+		for(int i=0;i<length-1;i++){
+			
+			for(int j=0;j<length-i-1;j++){
+				if(string[j]>string[j+1]){
+					char temp = string[j];
+					string[j] = string[j+1];
+					string[j+1] = temp;
+				}
+				
+			}
+		}
+		return new String(string);
+	}
+
+	public ArrayList<Integer> getPrimeNumbers(int rangeEnd) {
+		boolean[] prime = new boolean[rangeEnd+1];
+		Arrays.fill(prime, true);
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		for(int p=2;p*p<=rangeEnd;p++){
+			if(prime[p]==true){
+				for(int i=p*2;i<=rangeEnd;i+=p){
+					prime[i] = false;
+				}
+			}
+		}
+		for(int p =2;p<=rangeEnd;p++){
+			if(prime[p]){
+				result.add(p);
+			}
+		}
+		return result;
+	}
+
+	public void printArrayList(ArrayList<Integer> prime) {
+		for(int i=0;i<prime.size();i++){
+			System.out.print(prime.get(i) + " ");
+		}
+	}
+
+	public ArrayList<Integer> checkPalindrome(ArrayList<Integer> prime) {
+		
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		for(int i=0;i<prime.size();i++){
+			if(checkPalindrome(prime.get(i))){
+				result.add(prime.get(i));
+			}
+		}
+		return result;
+	}
+
+	private boolean checkPalindrome(int integer) {
+		int reverse = 0;
+		int temp = integer;
+		while(temp>0){
+			reverse = reverse*10 + temp%10;
+			temp /= 10;
+		}
+		if(integer==reverse){
+			return true;
+		}
+		return false;
+	}
+
+	public ArrayList<Integer> checkAnagram(ArrayList<Integer> prime) {
+		for(int i=0;i<prime.size();i++){
+			for(int j=0;j<prime.size();j++){
+				
+			}
+		}
+	}
+	
 	
 }
