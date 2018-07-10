@@ -20,21 +20,16 @@ public class Generics<T> {
 		switch(choice) {
 			case 1:
 				Integer[] arrayIntegerSearch = new Integer[size];
-				
+				System.out.println("Enter elements.");
 				for(int i=0;i<size;i++) {
 					arrayIntegerSearch[i] = utility.inputInteger();
 				}
 				
 				System.out.println("Enter element to search");
 				Integer intToFind = utility.inputInteger();
-				
-				if(utility.binarySearch(arrayIntegerSearch, intToFind)) {
-					System.out.println("Element found.");
-				}
-				else {
-					System.out.println("Element not found.");
-				}
+				utility.binarySearch(arrayIntegerSearch, intToFind);
 				break;
+				
 			case 2:
 				String[] arrayStringSearch = new String[size];
 				
@@ -44,13 +39,11 @@ public class Generics<T> {
 				
 				System.out.println("Enter string to search.");
 				String strToFind = utility.inputString();
+				utility.binarySearch(arrayStringSearch, strToFind);
+				break;
 				
-				if(utility.binarySearch(arrayStringSearch, strToFind)) {
-					System.out.println("String Found.");
-				}
-				else {
-					System.out.println("String not found.");
-				}
+			case 3:
+				
 		}
 	}
 

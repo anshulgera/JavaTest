@@ -539,14 +539,16 @@ public class Utility {
 		}
 	}
 
-	public <T extends Comparable<T>> boolean binarySearch(T[] array, T toFind) {
+	public <T extends Comparable<T>> void binarySearch(T[] array, T toFind) {
 		
 		int left = 0;
-		int right = array.length;
+		int right = array.length-1;
+		array = bubbleSort(array);
 		while(left<=right) {
 			int mid = left + (right-left)/2;
 			if(array[mid].compareTo(toFind) == 0) {
-				return true;
+				System.out.println("Element found");
+				return;
 			}
 			if(array[mid].compareTo(toFind) > 0) {
 				right = mid - 1;
@@ -555,6 +557,22 @@ public class Utility {
 				left = mid + 1;
 			}
 		}
-		return false;
+		System.out.println("Element not found.");
+		return;
+	}
+	public <T extends Comparable<T>> T[] bubbleSort(T[] array) {
+		
+		for(int i=0;i<array.length;i++) {
+			for(int j = i;j<array.length;j++) {
+				if(array[i].compareTo(array[j]) > 0) {
+					T t = array[i];
+					array[i] = array[j];
+					array[j] = t;
+				}
+			}
+		}
+		return array;
+		
+		
 	}
 }
