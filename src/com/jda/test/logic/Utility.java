@@ -525,6 +525,36 @@ public class Utility {
 		return;
 		
 	}
-	
-	
+
+	public int inputGenericChoice() {
+		int choice = scanner.nextInt();
+		while(true){
+			if(choice>0 && choice<7) {
+			return choice;
+			}
+			else {
+				System.out.println("Enter valid input.");
+				choice = scanner.nextInt();
+			}
+		}
+	}
+
+	public <T extends Comparable<T>> boolean binarySearch(T[] array, T toFind) {
+		
+		int left = 0;
+		int right = array.length;
+		while(left<=right) {
+			int mid = left + (right-left)/2;
+			if(array[mid].compareTo(toFind) == 0) {
+				return true;
+			}
+			if(array[mid].compareTo(toFind) > 0) {
+				right = mid - 1;
+			}
+			else {
+				left = mid + 1;
+			}
+		}
+		return false;
+	}
 }
