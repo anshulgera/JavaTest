@@ -14,9 +14,10 @@ public class PrimeExtend {
 		ArrayList<Integer> palindrome = new ArrayList<Integer>();
 		palindrome = utility.checkPalindrome(prime);
 		utility.printArrayList(palindrome);
+		System.out.println();
 		ArrayList<Integer> anagrams = new ArrayList<Integer>();
-		anagrams = utility.checkAnagram(prime);
-		utility.printArrayList(anagrams);
+		anagrams = utility.checkAnagramList(prime);
+		utility.printArrayListPairs(anagrams);
 		
 	}
 

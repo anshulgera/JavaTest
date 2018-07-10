@@ -10,7 +10,12 @@ public class Anagram {
 		System.out.println("Enter the strings to check for anagram.");
 		String a = utility.inputString();
 		String b = utility.inputString();
-		utility.checkForAnagram(a, b);
+		if(utility.checkForAnagram(a, b)){
+			System.out.println("Strings are anagrams.");
+		}
+		else{
+			System.out.println("Strings are not anagrams.");
+		}
 		
 
 	}

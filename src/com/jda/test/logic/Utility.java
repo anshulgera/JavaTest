@@ -418,19 +418,14 @@ public class Utility {
 		System.out.println("WindChill is " + windChill);
 	}
 
-	public void checkForAnagram(String a, String b) {
+	public boolean checkForAnagram(String a, String b) {
 		
 		//remove spaces
 		a = a.replaceAll("\\s+","");
 		b = b.replaceAll("\\s+","");
 		a = sortString(a.toCharArray(), a.length());
 		b = sortString(b.toCharArray(), b.length());
-		if(a.equals(b)){
-			System.out.print("Strings are anagrams.");
-		}
-		else{
-			System.out.println("Strings are not anagrams.");
-		}
+		return a.equals(b);
 		
 	}
 
@@ -499,12 +494,36 @@ public class Utility {
 		return false;
 	}
 
-	public ArrayList<Integer> checkAnagram(ArrayList<Integer> prime) {
+	public ArrayList<Integer> checkAnagramList(ArrayList<Integer> prime) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
 		for(int i=0;i<prime.size();i++){
-			for(int j=0;j<prime.size();j++){
-				
+			for(int j=i+1;j<prime.size();j++){
+				String compareA = String.valueOf(prime.get(i));
+				String compareB = String.valueOf(prime.get(j));
+				if(compareA.length()!=compareB.length()){
+					continue;
+				}
+				if(checkForAnagram(compareA, compareB)){
+					result.add(prime.get(i));
+					result.add(prime.get(j));
+				}
 			}
 		}
+		return result;
+	}
+
+	public void printArrayListPairs(ArrayList<Integer> anagrams) {
+		int count = 0;
+		for(int i=0;i<anagrams.size();i++){
+			if(count==2){
+				count = 0;
+				System.out.print(" * ");
+			}
+			System.out.print(anagrams.get(i) + " ");
+			count++;
+		}
+		return;
+		
 	}
 	
 	
