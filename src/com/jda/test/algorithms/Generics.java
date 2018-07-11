@@ -1,5 +1,7 @@
 package com.jda.test.algorithms;
 
+import java.util.Arrays;
+
 import com.jda.test.logic.Utility;
 
 public class Generics<T> {
@@ -24,7 +26,7 @@ public class Generics<T> {
 				for(int i=0;i<size;i++) {
 					arrayIntegerSearch[i] = utility.inputInteger();
 				}
-				
+				Arrays.sort(arrayIntegerSearch);
 				System.out.println("Enter element to search");
 				Integer intToFind = utility.inputInteger();
 				utility.binarySearch(arrayIntegerSearch, intToFind);
@@ -32,17 +34,51 @@ public class Generics<T> {
 				
 			case 2:
 				String[] arrayStringSearch = new String[size];
-				
+				System.out.println("Enter strings.");
 				for(int i=0;i<size;i++) {
 					arrayStringSearch[i] = utility.inputString();
 				}
-				
+				Arrays.sort(arrayStringSearch);
 				System.out.println("Enter string to search.");
 				String strToFind = utility.inputString();
 				utility.binarySearch(arrayStringSearch, strToFind);
 				break;
 				
 			case 3:
+				Integer[] arrayIntegerInsertion = new Integer[size];
+				System.out.println("Enter elements.");
+				for(int i=0;i<size;i++) {
+					arrayIntegerInsertion[i] = utility.inputInteger();
+				}
+				utility.insertionSort(arrayIntegerInsertion);
+				break;
+				
+			case 4:
+				String[] arrayStringInsertion = new String[size];
+				System.out.println("Enter elements.");
+				for(int i=0;i<size;i++) {
+					arrayStringInsertion[i] = utility.inputString();
+				}
+				utility.insertionSort(arrayStringInsertion);
+				break;
+				
+			case 5:
+				Integer[] arrayIntegerBubble = new Integer[size];
+				System.out.println("Enter elements.");
+				for(int i=0;i<size;i++) {
+					arrayIntegerBubble[i] = utility.inputInteger();
+				}
+				utility.bubbleSort(arrayIntegerBubble);
+				break;
+			
+			case 6:
+				String[] arrayStringBubble = new String[size];
+				System.out.println("Enter elements.");
+				for(int i=0;i<size;i++) {
+					arrayStringBubble[i] = utility.inputString();
+				}
+				utility.bubbleSort(arrayStringBubble);
+				break;
 				
 		}
 	}

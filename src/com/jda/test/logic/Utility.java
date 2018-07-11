@@ -543,7 +543,6 @@ public class Utility {
 		
 		int left = 0;
 		int right = array.length-1;
-		array = bubbleSort(array);
 		while(left<=right) {
 			int mid = left + (right-left)/2;
 			if(array[mid].compareTo(toFind) == 0) {
@@ -560,7 +559,7 @@ public class Utility {
 		System.out.println("Element not found.");
 		return;
 	}
-	public <T extends Comparable<T>> T[] bubbleSort(T[] array) {
+	public <T extends Comparable<T>> void bubbleSort(T[] array) {
 		
 		for(int i=0;i<array.length;i++) {
 			for(int j = i;j<array.length;j++) {
@@ -571,7 +570,23 @@ public class Utility {
 				}
 			}
 		}
-		return array;
+		for(int i=0;i<array.length;i++) {
+			System.out.print(array[i] + " ");
+		}
+	}
+	public <T extends Comparable<T>> void insertionSort(T[] array) {
+		for(int i=1;i<array.length;i++) {
+			T key = array[i];
+			int j = i-1;
+			while(j>=0 && array[j].compareTo(key)>0) {
+				array[j+1] = array[j];
+				j = j-1;
+			}
+			array[j+1] = key;
+		}
+		for(int i=0;i<array.length;i++) {
+			System.out.print(array[i] + " ");
+		}
 	}
 	
 }
