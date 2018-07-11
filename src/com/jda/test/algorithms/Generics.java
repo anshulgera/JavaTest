@@ -29,19 +29,28 @@ public class Generics<T> {
 				Arrays.sort(arrayIntegerSearch);
 				System.out.println("Enter element to search");
 				Integer intToFind = utility.inputInteger();
+				
+				long timeStart1  = System.currentTimeMillis();
 				utility.binarySearch(arrayIntegerSearch, intToFind);
+				long timeEnd1  = System.currentTimeMillis();
+				System.out.println("Time taken : " + (float)(timeEnd1-timeStart1)/1000);
 				break;
 				
 			case 2:
 				String[] arrayStringSearch = new String[size];
 				System.out.println("Enter strings.");
+				utility.emtpyLine();
 				for(int i=0;i<size;i++) {
 					arrayStringSearch[i] = utility.inputString();
 				}
 				Arrays.sort(arrayStringSearch);
 				System.out.println("Enter string to search.");
 				String strToFind = utility.inputString();
+				
+				long timeStart2  = System.currentTimeMillis();
 				utility.binarySearch(arrayStringSearch, strToFind);
+				long timeEnd2  = System.currentTimeMillis();
+				System.out.println("Time taken : " + (float)(timeEnd2-timeStart2)/1000);
 				break;
 				
 			case 3:
@@ -50,16 +59,25 @@ public class Generics<T> {
 				for(int i=0;i<size;i++) {
 					arrayIntegerInsertion[i] = utility.inputInteger();
 				}
+				
+				long timeStart3  = System.currentTimeMillis();
 				utility.insertionSort(arrayIntegerInsertion);
+				long timeEnd3  = System.currentTimeMillis();
+				System.out.println("Time taken : " + (float)(timeEnd3-timeStart3)/1000);
 				break;
 				
 			case 4:
 				String[] arrayStringInsertion = new String[size];
-				System.out.println("Enter elements.");
+				System.out.println("Enter strings.");
+				utility.emtpyLine();
 				for(int i=0;i<size;i++) {
 					arrayStringInsertion[i] = utility.inputString();
 				}
+				
+				long timeStart4  = System.currentTimeMillis();
 				utility.insertionSort(arrayStringInsertion);
+				long timeEnd4  = System.currentTimeMillis();
+				System.out.println("Time taken : " + (timeEnd4-timeStart4));
 				break;
 				
 			case 5:
@@ -68,16 +86,25 @@ public class Generics<T> {
 				for(int i=0;i<size;i++) {
 					arrayIntegerBubble[i] = utility.inputInteger();
 				}
+				
+				long timeStart5  = System.currentTimeMillis();
 				utility.bubbleSort(arrayIntegerBubble);
+				long timeEnd5  = System.currentTimeMillis();
+				System.out.println("Time taken : " + (float)(timeEnd5-timeStart5)/1000);
 				break;
 			
 			case 6:
 				String[] arrayStringBubble = new String[size];
-				System.out.println("Enter elements.");
+				System.out.println("Enter strings.");
+				utility.emtpyLine();
 				for(int i=0;i<size;i++) {
 					arrayStringBubble[i] = utility.inputString();
 				}
+				
+				long timeStart6  = System.currentTimeMillis();
 				utility.bubbleSort(arrayStringBubble);
+				long timeEnd6  = System.currentTimeMillis();
+				System.out.println("Time taken : " + (float)(timeEnd6-timeStart6)/1000);
 				break;
 				
 		}

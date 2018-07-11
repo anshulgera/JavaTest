@@ -10,9 +10,13 @@ import java.util.Scanner;
 public class Utility {
 	
 	Scanner scanner;
+	public static int NUMBER_OF_QUESTIONS = 0 ;
 	
 	public Utility(){
 		scanner = new Scanner(System.in);
+	}
+	public String emtpyLine() {
+		return scanner.nextLine();
 	}
 	
 	public int inputInteger(){
@@ -586,6 +590,50 @@ public class Utility {
 		}
 		for(int i=0;i<array.length;i++) {
 			System.out.print(array[i] + " ");
+		}
+	}
+
+	public void guessNumber(int number) {
+		double rangelow = Math.log(number)/Math.log(2);
+		int high = (int)Math.ceil(rangelow);
+		int low = high - 1;
+		int rangeLow = (int) Math.pow(2, low);
+		int rangeHigh = (int) Math.pow(2, high);
+		int max = high;
+		if(guessNumberUtil(number, rangeLow, rangeHigh, max)) {
+			System.out.println("Number guessed");
+			System.out.println("Number of questions asked : " + NUMBER_OF_QUESTIONS + " out of possible " + max);
+		}
+		else {
+			System.out.println("User input error.");
+		}
+
+	}
+
+	private boolean guessNumberUtil(int number, int rangeLow, int rangeHigh, int max) {
+		
+		if(max==NUMBER_OF_QUESTIONS) {
+			System.out.println("Somewhere you gave a wrong answer");
+			return false;
+		}
+		int mid = rangeLow + (rangeHigh-rangeLow)/2;
+		if(mid == number) {
+			System.out.println("Number is " + mid);
+			return true;
+		}
+		/*if(rangeHigh == number) {
+			System.out.println("Number is " + rangeHigh);
+			return true;
+		}*/
+		boolean answer;
+		NUMBER_OF_QUESTIONS++;
+		System.out.println("QNo:" + NUMBER_OF_QUESTIONS + " Is number greater than " + rangeLow + " and less than equal to " + mid);
+		answer = inputBoolean();
+		if(answer) {
+			return guessNumberUtil(number,rangeLow,mid, max);
+		}
+		else {
+			return guessNumberUtil(number, mid+1,rangeHigh, max);
 		}
 	}
 	
