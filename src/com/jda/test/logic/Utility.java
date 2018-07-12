@@ -1,5 +1,9 @@
 package com.jda.test.logic;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -636,6 +640,32 @@ public class Utility {
 			return guessNumberUtil(number, mid+1,rangeHigh, max);
 		}
 	}
-	public ArrayList<String> get
+
+	public void searchFile(String fileLocation, String search) {
+		BufferedReader reader = null;
+		String line = "";
+		try {
+			reader = new BufferedReader(new FileReader(fileLocation));
+			while((line=reader.readLine()) != null){
+				String[] words = line.split(",");
+				Arrays.sort(words);
+				binarySearch(words, search);
+			}
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(reader!=null) {
+				try {
+					reader.close();
+				}catch(IOException e){
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
 }
