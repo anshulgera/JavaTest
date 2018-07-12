@@ -262,6 +262,7 @@ public class Utility {
 			out.flush();
 			out.close();
 		}
+	
 	public void handleBooleanArray2D(int row, int column) {
 		
 		PrintWriter out =new PrintWriter(System.out);
@@ -377,7 +378,7 @@ public class Utility {
 	public void calcSqRoot(int a, int b, int c) {
 		float delta = (float) (Math.pow(b, 2) - 4*a*c);
 		if(delta<0){
-			System.out.println("Imaginary roots as b^2-4ac is egative.");
+			System.out.println("Imaginary roots as b^2-4ac is negative.");
 		}
 		else if(delta == 0){
 			float result = (float) (-b)/(2*a);
@@ -666,6 +667,50 @@ public class Utility {
 				}
 			}
 		}
+	}
+	public void minCoinChange(int[] coins, int diffCoins, int amount) {
+		
+		int[] value = new int[amount + 1];
+		int[] answer = new int[amount + 1];
+		value[0] = 0;
+		for(int i=1;i<=amount;i++) {
+			value[i] = Integer.MAX_VALUE;
+		}
+		for(int i=0;i<amount;i++) {
+			answer[i] = 0;
+		}
+		
+		for(int i=1;i<=amount;i++) {
+			for(int j=0;j<diffCoins;j++) {
+				{
+					//only if coin value is greater than current value required 
+					if(coins[j]<=i) {
+						//result without current coin
+						int sub_result = value[i - coins[j]];
+						
+						if(sub_result!=Integer.MAX_VALUE && sub_result + 1<value[i]) {
+							//update value including current coin
+							value[i] = sub_result + 1;
+							
+							//last added coin
+							answer[i] = coins[j];
+						}
+					}
+				}
+			}
+		}
+		System.out.println("Number of coins : " + value[amount]);
+		if(value[amount]!=Integer.MAX_VALUE) {
+			while(value[amount]>0) {
+				System.out.println(answer[amount]);
+				amount = amount - answer[amount];
+			}
+		}else {
+			System.out.println("No answer");
+		}
+		
+		return;
+		
 	}
 	
 }
