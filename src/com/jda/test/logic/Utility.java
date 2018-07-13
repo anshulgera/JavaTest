@@ -795,5 +795,32 @@ public class Utility {
 		return ((binary & 0x0F) << 4 | (binary & 0xF0) >> 4);
 		
 	}
+	
+	public String[] getWords(String fileLocation) {
+		BufferedReader reader = null;
+		String line = "";
+		try {
+			reader = new BufferedReader(new FileReader(fileLocation));
+			while((line=reader.readLine()) != null){
+				String[] words = line.split(" ");
+				return words;
+			}
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(reader!=null) {
+				try {
+					reader.close();
+				}catch(IOException e){
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
 		
 }
