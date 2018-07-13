@@ -746,16 +746,12 @@ public class Utility {
 	}
 	public void getDay(int date, int month, int year) {
 		
-		float y = (float)year - (float)(14-month)/12;
-		System.out.println(y);
-		float x = (float)y + (float)y/4 - (float)y/100 + (float)y/400;
-		System.out.println(x);
-		float m = (float)month + (float)12*(float)((float)(14 - month)/12) - (float)2;
-		System.out.println(m);
-		float d = ((float)date + (float)x + (float)(31*m)/12)%7;
+		int y = year - (14-month)/12;
+		int x = y + y/4 - y/100 + y/400;
+		int m = month + 12*((14-month)/12) - 2;
+		int d = (date + x + (31*m)/12)%7;
 		String[] days = new String[] {"Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-		System.out.println(date+"/"+month+"/"+year+" -> " + days[Math.round(d)]);
-		System.out.println(d);
+		System.out.println(date+"/"+month+"/"+year+" -> " + days[d]);
 	}
 	public void celsiusToF() {
 		System.out.println("Enter temperature in celsius:");
