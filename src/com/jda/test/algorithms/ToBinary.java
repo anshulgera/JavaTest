@@ -7,7 +7,7 @@ public class ToBinary {
 	public static void main(String[] args) {
 		Utility utility = new Utility();
 		int number =  utility.inputPositiveInteger();
-		int binary = calculateBinaryRep(number);
+		long binary = calculateBinaryRep(number);
 		System.out.println(binary);
 	}
 

@@ -790,5 +790,10 @@ public class Utility {
 			}
 		}
 	}
+	public int swapNibbles(int binary) {
+		
+		return ((binary & 0x0F) << 4 | (binary & 0xF0) >> 4);
+		
+	}
 		
 }
