@@ -712,5 +712,83 @@ public class Utility {
 		return;
 		
 	}
+
+	public int inputMonth() {
+
+		int month = scanner.nextInt();
+		while(true) {
+			if(month>0 && month<13) {
+				return month;
+			}
+			else {
+				System.out.println("Month should be between 1 and 12");
+				month = scanner.nextInt();
+			}
+		}
+	}
+
+	public int inputDate(int month, int year) {
 	
+		int[] days = new int[] {31,28,31,30,31,30,31,31,30,31,30,31};
+		if(month==2 && checkLeapYear(year)) {
+			days[1] = 29;
+		}
+		int date = scanner.nextInt();
+		while(true) {
+			if(date>0 && date<=days[month-1]) {
+				return date;
+			}
+			else {
+				System.out.println("For month " + month + " date should be between 1 and " + days[month-1] );
+				
+			}
+		}
+	}
+	public void getDay(int date, int month, int year) {
+		
+		float y = (float)year - (float)(14-month)/12;
+		System.out.println(y);
+		float x = (float)y + (float)y/4 - (float)y/100 + (float)y/400;
+		System.out.println(x);
+		float m = (float)month + (float)12*(float)((float)(14 - month)/12) - (float)2;
+		System.out.println(m);
+		float d = ((float)date + (float)x + (float)(31*m)/12)%7;
+		String[] days = new String[] {"Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+		System.out.println(date+"/"+month+"/"+year+" -> " + days[Math.round(d)]);
+		System.out.println(d);
+	}
+	public void celsiusToF() {
+		System.out.println("Enter temperature in celsius:");
+		double celsius = inputDouble();
+		double fah = (celsius*((double)9/5))+32;
+		System.out.println(fah);
+		return;
+	}
+	public void fahrenheitToC() {
+		System.out.println("Enter temperature in fahrenheit");
+		double fah = inputDouble();
+		double c = (fah-32)*((double)5/9);
+		System.out.println(c);
+		return;
+	}
+	public double inputDoublePositive() {
+		System.out.println("Enter psoitive number:");
+		String input = scanner.next();
+		while(true){
+			try{
+				double value = Double.parseDouble(input);
+				if(value>0) {
+					return value;
+				}
+				else {
+					System.out.println("Input positive number.");
+				}
+			}
+			catch(NumberFormatException e){
+				System.out.println("Enter valid input");
+				input = scanner.next();
+			}
+		}
+	}
+		
 }
