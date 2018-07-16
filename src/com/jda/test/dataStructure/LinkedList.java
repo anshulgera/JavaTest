@@ -1,6 +1,6 @@
 package com.jda.test.dataStructure;
 
-public class LinkedList<T> {
+public class LinkedList<T extends Comparable<? super T>> {
 	
 	Node head;
 	
@@ -47,11 +47,10 @@ public class LinkedList<T> {
 		return;
 	}
 	
-	@SuppressWarnings({ "unchecked", "hiding" })
-	public <T extends Comparable<T>> boolean searchWord(T search) {
+	public boolean searchWord(T search) {
 		Node temp = head;
 		while(temp!=null) {
-			if(search.compareTo((T)temp.data)==0) {
+			if(search.compareTo(temp.data)==0) {
 				return true;
 			}
 			temp = temp.next;
@@ -60,8 +59,7 @@ public class LinkedList<T> {
 		
 	}
 
-	@SuppressWarnings({ "hiding", "unchecked" })
-	public <T extends Comparable<T>> void deleteWord(T search) {
+	public void deleteWord(T search) {
 		
 		Node temp = head;
 		Node prev = null;
@@ -85,8 +83,26 @@ public class LinkedList<T> {
 		return;
 		
 	}
-	
-	
 
+	public void sortList() {
+		if(head==null || head.next==null) {
+			return;
+		}
+		Node left = head;
+		Node mid = head.next;
+		Node right = head.next.next;
+		boolean swapped = false;
+		while(mid!=null) {
+			if(mid.data.compareTo(right.data)>0) {
+				left.next = right;
+				mid.next = right.next;
+				right.next = mid;
+				swapped = true;
+			}
+			if(!swapped) {
+				break;
+			}
+		}
+	}	
 
 }

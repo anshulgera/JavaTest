@@ -571,11 +571,11 @@ public class Utility {
 	public <T extends Comparable<T>> void bubbleSort(T[] array) {
 		
 		for(int i=0;i<array.length;i++) {
-			for(int j = i;j<array.length;j++) {
-				if(array[i].compareTo(array[j]) > 0) {
-					T t = array[i];
-					array[i] = array[j];
-					array[j] = t;
+			for(int j = 0;j<array.length-i-1;j++) {
+				if(array[j].compareTo(array[j+1]) > 0) {
+					T t = array[j];
+					array[j] = array[j+1];
+					array[j+1] = t;
 				}
 			}
 		}
@@ -583,6 +583,7 @@ public class Utility {
 			System.out.print(array[i] + " ");
 		}
 	}
+	
 	public <T extends Comparable<T>> void insertionSort(T[] array) {
 		for(int i=1;i<array.length;i++) {
 			T key = array[i];
@@ -816,6 +817,26 @@ public class Utility {
 				}
 			}
 		}
+		return null;
+	}
+	public String[] readFileForIntegers(String fileLocation) {
+		BufferedReader reader = null;
+		String line = "";
+		try {
+			reader = new BufferedReader(new FileReader(fileLocation));
+			while((line=reader.readLine()) != null){
+				String[] words = line.split(",");
+				Arrays.sort(words);
+				reader.close();
+				return words;
+			}
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 		
