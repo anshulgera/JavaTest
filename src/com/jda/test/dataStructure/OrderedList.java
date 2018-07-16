@@ -16,7 +16,19 @@ public class OrderedList {
 		}
 		
 		list.createList(input);
-		list.sortList();
+		list.head = list.mergeSortList(list.head);
+		list.printList(list.head);
+		System.out.println("Enter number to search");
+		int search = utility.inputInteger();
+		if(list.searchWord(search)) {
+			System.out.println(search + " Deleted");
+			list.deleteWord(search);
+		}
+		else {
+			list.insertSorted(search);
+			System.out.println(search + " Inserted.");
+		}
+		list.printList(list.head);
 	}
 
 }

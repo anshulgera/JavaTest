@@ -84,25 +84,87 @@ public class LinkedList<T extends Comparable<? super T>> {
 		
 	}
 
-	public void sortList() {
+	public Node mergeSortList(Node head) {
 		if(head==null || head.next==null) {
+			return head;
+		}
+		Node mid = splitList(head);
+		Node nextOfMid = mid.next;
+		mid.next = null;
+		
+		Node left = mergeSortList(head);
+		Node right = mergeSortList(nextOfMid);
+		Node sortedList = sortedMerge(left,right);
+		return sortedList;
+	}
+
+	private Node splitList(Node head) {
+		if(head==null) {
+			return head;
+		}
+		Node fast = head.next;
+		Node slow = head;
+		while(fast!=null) {
+			fast = fast.next;
+			if(fast!=null) {
+				fast = fast.next;
+				slow = slow.next;
+			}
+		}
+		return slow;
+	}
+
+	private Node sortedMerge(Node left, Node right) {
+		
+		Node result = null;
+		if(left==null)
+			return right;
+		if(right==null)
+			return left;
+		if(left.data.compareTo(right.data)<=0) {
+			result = left;
+			result.next = sortedMerge(left.next, right);
+		}
+		else {
+			result = right;
+			result.next = sortedMerge(left, right.next);
+		}
+		return result;
+	}
+
+	public void insertSorted(T search) {
+		
+		Node temp = head;
+		Node newNode = new Node(search);
+		
+		//empty list 
+		if(temp==null) {
+			head = newNode;
 			return;
 		}
-		Node left = head;
-		Node mid = head.next;
-		Node right = head.next.next;
-		boolean swapped = false;
-		while(mid!=null) {
-			if(mid.data.compareTo(right.data)>0) {
-				left.next = right;
-				mid.next = right.next;
-				right.next = mid;
-				swapped = true;
-			}
-			if(!swapped) {
-				break;
-			}
+		
+		//insert at first
+		if(temp.data.compareTo(search)>=0) {
+			newNode.next = temp;
+			head = newNode;
+			return;
 		}
-	}	
+		//traverse till next or temp is greater than newNode
+		while(temp.next!=null && temp.next.data.compareTo(search)<0) {
+			temp = temp.next;
+		}
+		//insert element
+		if(temp.next!=null) {
+			newNode.next = temp.next;
+			temp.next = newNode;
+			return;
+		}
+		//to insert at end of list
+		temp.next = newNode;
+		return;
+		
+	}
+
+		
 
 }
