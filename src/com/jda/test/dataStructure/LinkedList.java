@@ -159,7 +159,7 @@ public class LinkedList<T extends Comparable<? super T>> {
 			temp.next = newNode;
 			return;
 		}
-		//to insert at end of list
+		//to insert at end of list	
 		temp.next = newNode;
 		return;
 		
