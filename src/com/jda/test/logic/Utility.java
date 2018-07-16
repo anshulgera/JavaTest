@@ -795,5 +795,22 @@ public class Utility {
 		return ((binary & 0x0F) << 4 | (binary & 0xF0) >> 4);
 		
 	}
-		
+	public int inputPositiveIntegerAux() {
+		int input = 0;
+		while(true) {
+			try {
+				input = Integer.parseInt(scanner.nextLine());
+			}
+			catch(NumberFormatException e) {
+			e.printStackTrace();
+			}
+			if(input>0) {
+				return input;
+			}
+			else {
+				System.out.println("Size should be greater than zero");
+			}
+		}
+	}
+
 }
