@@ -819,4 +819,23 @@ public class Utility {
 		return null;
 	}
 		
+	public int inputPositiveIntegerAux() {
+		int input = 0;
+		while(true) {
+			try {
+				input = Integer.parseInt(scanner.nextLine());
+			}
+			catch(NumberFormatException e) {
+			e.printStackTrace();
+			}
+			if(input>0) {
+				return input;
+			}
+			else {
+				System.out.println("Size should be greater than zero");
+			}
+		}
+	}
+
+
 }
