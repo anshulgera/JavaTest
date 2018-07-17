@@ -1,4 +1,5 @@
 package com.jda.test.dataStructure;
+import com.jda.test.logic.LinkedList;
 import com.jda.test.logic.Utility;
 
 public class OrderedList {

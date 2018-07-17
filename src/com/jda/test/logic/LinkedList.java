@@ -1,8 +1,8 @@
-package com.jda.test.dataStructure;
+package com.jda.test.logic;
 
 public class LinkedList<T extends Comparable<? super T>> {
 	
-	Node head;
+	public Node head;
 	
 	class Node{
 		T data;
