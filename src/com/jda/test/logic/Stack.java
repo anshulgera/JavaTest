@@ -25,17 +25,15 @@ public class Stack<T> {
 		return;
 	}
 	
-	public void pop() {
+	public T pop() {
 		Node temp = top;
 		
 		if(temp==null) {
 			System.out.println("Empty stack");
-			return;
+			return null;
 		}
 		top = temp.next;
-		System.out.println(temp.data + " removed.");
-		temp = null;
-		return;
+		return temp.data;
 	}
 	
 
@@ -73,7 +71,53 @@ public class Stack<T> {
 	 *  Another stack for the operands.
 	 * @param expression
 	 */
-	public void evaluateExpression(String expression) {
+	
+
+	private boolean hasPrecedence(char c, Character peek) {
+		if(peek=='(' || peek==')')
+			return false;
+		if((c=='*' || c=='/') && (peek=='+' || peek=='-'))
+			return false;
+		return true;
+	}
+
+	private Integer applyOperand(Character op, Integer a, Integer b) {
+		switch(op) {
+		case '+':
+			return a+b;
+		case '-':
+			return b-a;
+		case '*':
+			return a*b;
+		case '/':
+			return (a==0)?null:b/a;
+		}
+		return null;
+	}
+	
+	public boolean isEmpty() {
+		return (top==null)?true:false;
+	}
+
+	public boolean checkParanthesis(String expression) {
+		Stack<Character> stack = new Stack<Character>();
+		for(int i=0;i<expression.length();i++) {
+			if(expression.charAt(i)=='(') {
+				stack.push('(');
+			}else if(expression.charAt(i)==')') {
+				if(!stack.isEmpty() && stack.peek()=='(' ) {
+					stack.pop();
+					continue;
+				}
+				else
+					return false;
+			}
+		}
+		if(stack.isEmpty())
+			return true;
+		return false;
+	}
+	public Integer evaluateExpression(String expression) {
 		//holding the whole expression
 		char[] tokens = expression.toCharArray();
 		Stack<Integer> values = new Stack<Integer>();
@@ -81,6 +125,72 @@ public class Stack<T> {
 		
 		for(int i=0;i<tokens.length;i++) {
 			
+			/*
+			 *Handle empty space, skip iteration
+			 */
+			if(tokens[i]==' ') {
+				continue;
+			}
+			
+			/*
+			 * Handle integers
+			 */
+			if(tokens[i]>='0' && tokens[i]<='9') {
+				StringBuffer strbuff = new StringBuffer();
+				/*
+				 * To handle multiple digit integer, take it as a stringbuffer object
+				 * parse it to integer and push it to stack
+				*/
+				while(i<tokens.length && tokens[i]>='0' && tokens[i]<='9') {
+					strbuff.append(tokens[i]);
+					i++;
+				}
+				/*
+				 * Parse stringbuffer object to string 
+				 * and then parse that string as an integer to integer stack
+				 */
+				
+				values.push(Integer.parseInt(strbuff.toString()));
+			}
+			
+			else if(tokens[i] == '(') {
+				operands.push(tokens[i]);
+			}
+			
+			/*
+			 * Solve expression present in brace
+			 */
+			else if(tokens[i] == ')') {
+				/*
+				 * Till we encounter closing brace
+				 */
+				while(operands.peek().compareTo('(')!=0) {
+					values.push(applyOperand(operands.pop(),values.pop(),values.pop()));
+				}
+				operands.pop();
+			}
+			/*
+			 * Token is an operator
+			 */
+			else if(tokens[i] == '+' || tokens[i] == '-' || tokens[i]  == '*'
+					|| tokens[i] == '/') {
+				while(!operands.isEmpty() && hasPrecedence(tokens[i], operands.peek())) {
+					values.push(applyOperand(operands.pop(),values.pop(),values.pop()));
+				}
+				/* 
+				 * If stack is empty or if current token doesn't have precedence
+				 * over operand top, then push operand
+				 */
+				operands.push(tokens[i]);
+			}
 		}
+		/*
+		 * Apply remaining operations on the values in stack
+		 */
+		while(!operands.isEmpty()) {
+			values.push(applyOperand(operands.pop(),values.pop(),values.pop()));
+		}
+		
+		return values.pop();
 	}
 }

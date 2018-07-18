@@ -9,10 +9,13 @@ public class BalancedParanthesis {
 		Stack<Character> stack = new Stack<Character>();
 		System.out.println("Enter expression");
 		String expression = utility.inputString();
-		for(int i=0;i<expression.length();i++) {
-			stack.push(expression.charAt(i));
+		if(stack.checkParanthesis(expression)) {
+			System.out.println("Paranthesis balanced.");
 		}
-		stack.evaluateExpression(expression);
+		else {
+			System.out.println("Paranthesis unbalanced");
+		}
+		
 	}
 
 }
