@@ -570,6 +570,12 @@ public class Utility {
 	}
 	public <T extends Comparable<T>> void bubbleSort(T[] array) {
 		
+		if(array[0].getClass()==Integer.class) {
+			System.out.println("Integer");
+		}
+		else if(array[0].getClass()==String.class) {
+			System.out.println("String");
+		}
 		for(int i=0;i<array.length;i++) {
 			for(int j = 0;j<array.length-i-1;j++) {
 				if(array[j].compareTo(array[j+1]) > 0) {
