@@ -819,7 +819,7 @@ public class Utility {
 		}
 		return null;
 	}
-	public String[] readFileForIntegers(String fileLocation) {
+	public String[] readsFileForSortedIntegers(String fileLocation) {
 		BufferedReader reader = null;
 		String line = "";
 		try {
@@ -827,6 +827,26 @@ public class Utility {
 			while((line=reader.readLine()) != null){
 				String[] words = line.split(",");
 				Arrays.sort(words);
+				reader.close();
+				return words;
+			}
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public String[] readFileForIntegers(String fileLocation) {
+		BufferedReader reader = null;
+		String line = "";
+		try {
+			reader = new BufferedReader(new FileReader(fileLocation));
+			while((line=reader.readLine()) != null){
+				String[] words = line.split(",");
 				reader.close();
 				return words;
 			}

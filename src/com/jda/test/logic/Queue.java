@@ -82,6 +82,24 @@ public class Queue<T> {
 		System.out.println("Queue status : ");
 		
 	}
+
+	public T deQueueRear() {
+		if(front == null)
+			return null;
+		if(front.next == null) {
+			Node temp = front;
+			front = null;
+			return temp.data;
+		}
+		Node newEnd = front;
+		Node end;
+		while(newEnd.next.next!=null) {
+			newEnd = newEnd.next;
+		}
+		end = newEnd.next;
+		newEnd.next = null;
+		return end.data;
+	}
 	
 
 }

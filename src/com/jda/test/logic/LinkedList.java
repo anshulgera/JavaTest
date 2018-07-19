@@ -4,7 +4,7 @@ public class LinkedList<T extends Comparable<? super T>> {
 	
 	public Node head;
 	
-	class Node{
+	public class Node{
 		T data;
 		Node next;
 		Node(T t){
@@ -164,7 +164,5 @@ public class LinkedList<T extends Comparable<? super T>> {
 		return;
 		
 	}
-
-		
 
 }
