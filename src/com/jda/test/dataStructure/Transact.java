@@ -27,7 +27,6 @@ public class Transact {
 				choice = utility.inputPositiveInteger();
 			}
 		}
-		
 	}
 
 	private void withdraw(Queue<Integer> queue) {
@@ -48,7 +47,7 @@ public class Transact {
 	}
 
 	public void performTransaction(Queue<Integer> queue) {
-		System.out.println("Performing transaction");
+		System.out.println("Performing transaction...");
 		if(queue.isEmpty()) {
 			System.out.println("No request to process");
 			return;
@@ -69,7 +68,7 @@ public class Transact {
 			}
 			System.out.println("Balance before : " + CASH_BALANCE);
 			CASH_BALANCE += amount;
-			System.out.println("Request processed. Available balance : " + CASH_BALANCE);
+			System.out.println("Request processed. Available  cash balance : " + CASH_BALANCE);
 		}
 		return;
 	}
@@ -80,7 +79,6 @@ public class Transact {
 		if(size<1)
 			return;
 		System.out.println("Queue status : ");
-		queue.printQueue(queue);
-		return;
+		queue.printQueue();
 	}
 }

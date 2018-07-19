@@ -99,24 +99,7 @@ public class Stack<T> {
 		return (top==null)?true:false;
 	}
 
-	public boolean checkParanthesis(String expression) {
-		Stack<Character> stack = new Stack<Character>();
-		for(int i=0;i<expression.length();i++) {
-			if(expression.charAt(i)=='(') {
-				stack.push('(');
-			}else if(expression.charAt(i)==')') {
-				if(!stack.isEmpty() && stack.peek()=='(' ) {
-					stack.pop();
-					continue;
-				}
-				else
-					return false;
-			}
-		}
-		if(stack.isEmpty())
-			return true;
-		return false;
-	}
+	
 	public Integer evaluateExpression(String expression) {
 		//holding the whole expression
 		char[] tokens = expression.toCharArray();

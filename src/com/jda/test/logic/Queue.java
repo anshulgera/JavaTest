@@ -1,8 +1,7 @@
 package com.jda.test.logic;
-
 public class Queue<T> {
-	public Node front = null;
-	public Node tail = null;
+	Node front = null;
+	Node tail = null;
 	
 	class Node{
 		T data;
@@ -10,7 +9,7 @@ public class Queue<T> {
 		Node(T t){
 			data = t;
 			next=null;
-		}
+			}	
 	}
 	
 	public void enQueue(T value) {
@@ -70,23 +69,19 @@ public class Queue<T> {
 		int size = 0;
 		while(temp!=null) {
 			size++;
+			temp = temp.next;
 		}
 		return size;
 	}
 
-	public void printQueue(Queue<Integer> queue) {
-		if(isEmpty()) {
-			System.out.println("Empty queue");
+	public void getStatus() {
+		int size = getSize();
+		System.out.print("Number of people in queue " + size + "\n");
+		if(size<1)
 			return;
-		}
-		Queue<Integer>.Node temp = queue.front;
-		System.out.print("Front->");
-		while(temp!=null) {
-			System.out.print(temp.data + " -> ");
-			temp = temp.next;
-		}
-		System.out.print("End\n");
-		return;
+		System.out.println("Queue status : ");
+		
 	}
+	
 
 }
