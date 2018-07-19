@@ -1,1 +1,1 @@
-How, does, an, object, know, its, class
+How does an object know its class
