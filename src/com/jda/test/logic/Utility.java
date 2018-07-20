@@ -15,6 +15,9 @@ public class Utility {
 	
 	Scanner scanner;
 	public static int NUMBER_OF_QUESTIONS = 0 ;
+	public String[] months = new String[] {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+	public char[] dayNotation = new char[] {'S','M','T','W','T','F','S'};
+	public int[] days = new int[] {31,28,31,30,31,30,31,31,30,31,30,31};
 	
 	public Utility(){
 		scanner = new Scanner(System.in);
@@ -571,11 +574,11 @@ public class Utility {
 	public <T extends Comparable<T>> void bubbleSort(T[] array) {
 		
 		for(int i=0;i<array.length;i++) {
-			for(int j = i;j<array.length;j++) {
-				if(array[i].compareTo(array[j]) > 0) {
-					T t = array[i];
-					array[i] = array[j];
-					array[j] = t;
+			for(int j = 0;j<array.length-i-1;j++) {
+				if(array[j].compareTo(array[j+1]) > 0) {
+					T t = array[j];
+					array[j] = array[j+1];
+					array[j+1] = t;
 				}
 			}
 		}
@@ -583,6 +586,7 @@ public class Utility {
 			System.out.print(array[i] + " ");
 		}
 	}
+	
 	public <T extends Comparable<T>> void insertionSort(T[] array) {
 		for(int i=1;i<array.length;i++) {
 			T key = array[i];
@@ -744,14 +748,14 @@ public class Utility {
 			}
 		}
 	}
-	public void getDay(int date, int month, int year) {
+	public int getDay(int date, int month, int year) {
 		
 		int y = year - (14-month)/12;
 		int x = y + y/4 - y/100 + y/400;
 		int m = month + 12*((14-month)/12) - 2;
 		int d = (date + x + (31*m)/12)%7;
-		String[] days = new String[] {"Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-		System.out.println(date+"/"+month+"/"+year+" -> " + days[d]);
+		return d;
+		
 	}
 	public void celsiusToF() {
 		System.out.println("Enter temperature in celsius:");
@@ -817,6 +821,55 @@ public class Utility {
 			}
 		}
 		return null;
+	}
+	public String[] readsFileForSortedIntegers(String fileLocation) {
+		BufferedReader reader = null;
+		String line = "";
+		try {
+			reader = new BufferedReader(new FileReader(fileLocation));
+			while((line=reader.readLine()) != null){
+				String[] words = line.split(",");
+				Arrays.sort(words);
+				reader.close();
+				return words;
+			}
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public String[] readFileForIntegers(String fileLocation) {
+		BufferedReader reader = null;
+		String line = "";
+		try {
+			reader = new BufferedReader(new FileReader(fileLocation));
+			while((line=reader.readLine()) != null){
+				String[] words = line.split(",");
+				reader.close();
+				return words;
+			}
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	public <T>void print2DArray(T[][] array, int numberOfRows, int numberOfCols) {
+		for(int i=0;i<numberOfRows;i++) {
+			for(int j=0;j<numberOfCols;j++) {
+				System.out.print(array[i][j] + " ");
+			}
+			System.out.print("\n");
+		}
+		
 	}
 		
 	public int inputPositiveIntegerAux() {

@@ -1,17 +1,20 @@
 package com.jda.test.dataStructure;
 
+import com.jda.test.logic.LinkedList;
 import com.jda.test.logic.Utility;
 
 public class LinkedListImplement {
 
 	public static void main(String[] args) {
 		Utility utility = new Utility();
+		
 		String fileLocation = "C:\\Users\\1022772\\git\\JavaTest\\textFile.txt";
 		String[]  words = utility.getWords(fileLocation);
-		LinkedList list = new LinkedList();
+		LinkedList<String> list = new LinkedList<String>();
 		list.createList(words);
 		System.out.println("Enter word to search.");
 		String search = utility.inputString();
+		
 		if(list.searchWord(search)) {
 			list.deleteWord(search);
 			list.printList(list.head);
