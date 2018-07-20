@@ -19,9 +19,13 @@ public class Calender {
 		
 		int day = utility.getDay(date, month, year);
 		
-		String[] months = new String[] {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-		char[] dayNotation = new char[] {'S','M','T','W','T','F','S'};
-		int[] days = new int[] {31,28,31,30,31,30,31,31,30,31,30,31};
+		//[Jan,Feb,...]
+		String[] months = utility.months;
+		//[S,M,T,.]
+		char[] dayNotation = utility.dayNotation;
+		//[31,28,31,..]
+		int[] days = utility.days;
+		
 		if(utility.checkLeapYear(year)) {
 			days[1] = 29;
 		}
@@ -33,12 +37,16 @@ public class Calender {
 		
 		for(int i=0;i<7;i++) {
 			for(int j=0;j<7;j++) {
+				//Print dayNotations
 				if(i==0) {
+					
 					calender[i][j] = Character.toString(dayNotation[j]) + " ";
 				}
+				//Empty spaces
 				else if((i==1 && j!=day && count == 1) ||(count>days[month-1])) {
 					calender[i][j] = "";
 				}
+				//Print days
 				else {
 					calender[i][j] = Integer.toString(count);
 					count++;
@@ -48,6 +56,8 @@ public class Calender {
 				}
 			}
 		}
+		
+		//Print calender
 		for(int i=0;i<6;i++) {
 			for(int j=0;j<7;j++) {
 				System.out.print(calender[i][j] + " ");

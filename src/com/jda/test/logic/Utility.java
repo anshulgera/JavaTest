@@ -15,6 +15,9 @@ public class Utility {
 	
 	Scanner scanner;
 	public static int NUMBER_OF_QUESTIONS = 0 ;
+	public String[] months = new String[] {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+	public char[] dayNotation = new char[] {'S','M','T','W','T','F','S'};
+	public int[] days = new int[] {31,28,31,30,31,30,31,31,30,31,30,31};
 	
 	public Utility(){
 		scanner = new Scanner(System.in);
@@ -858,6 +861,15 @@ public class Utility {
 		}
 		
 		return null;
+	}
+	public <T>void print2DArray(T[][] array, int numberOfRows, int numberOfCols) {
+		for(int i=0;i<numberOfRows;i++) {
+			for(int j=0;j<numberOfCols;j++) {
+				System.out.print(array[i][j] + " ");
+			}
+			System.out.print("\n");
+		}
+		
 	}
 		
 }

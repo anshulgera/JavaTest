@@ -12,6 +12,8 @@ public class DayOfWeek {
 			month = Integer.parseInt(args[1]);
 			date = Integer.parseInt(args[2]);
 			
+		}else {
+			return;
 		}
 		System.out.println("Enter year, month and date");
 		String[] days = new String[] {"Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
