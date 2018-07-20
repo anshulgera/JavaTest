@@ -21,7 +21,7 @@ public class CustomHashMapChaining{
 		System.out.println("Enter hashMap key : ");
 		int hashMapKey = utility.inputPositiveInteger();
 		for(int i=1;i<hashMapKey+1;i++) {
-			HashMapElement<Integer, >
+			HashMapElement<Integer, Node<Integer>> hashMap = new HashMapElement<Integer, Node<Integer>>; 
 		}
 	}
 	

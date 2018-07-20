@@ -745,14 +745,14 @@ public class Utility {
 			}
 		}
 	}
-	public void getDay(int date, int month, int year) {
+	public int getDay(int date, int month, int year) {
 		
 		int y = year - (14-month)/12;
 		int x = y + y/4 - y/100 + y/400;
 		int m = month + 12*((14-month)/12) - 2;
 		int d = (date + x + (31*m)/12)%7;
-		String[] days = new String[] {"Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-		System.out.println(date+"/"+month+"/"+year+" -> " + days[d]);
+		return d;
+		
 	}
 	public void celsiusToF() {
 		System.out.println("Enter temperature in celsius:");

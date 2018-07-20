@@ -14,10 +14,12 @@ public class DayOfWeek {
 			
 		}
 		System.out.println("Enter year, month and date");
+		String[] days = new String[] {"Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+		int day = utility.getDay(date, month, year);
+		System.out.println(date+"/"+month+"/"+year+" -> " + days[day]);
 		//year = utility.inputYear();
 		//month = utility.inputMonth();
 		//date = utility.inputDate(month, year);
-		utility.getDay(date, month, year);
 		
 	}
 
