@@ -1,17 +1,9 @@
 package com.jda.test.logic;
-
 public class LinkedList<T extends Comparable<? super T>> {
 	
-	public Node head;
+	public Node<T> head;
 	
-	public class Node{
-		T data;
-		Node next;
-		Node(T t){
-			data = t;
-			next = null;
-		}
-	}
+	
 	
 	public void createList(T[] array) {
 		for(int i=0;i<array.length;i++) {
@@ -21,8 +13,8 @@ public class LinkedList<T extends Comparable<? super T>> {
 		printList(head);
 	}
 
-	public void printList(Node head) {
-		Node temp = head;
+	public void printList(Node<T> head) {
+		Node<T> temp = head;
 		while(temp != null) {
 			System.out.print(temp.data + "->");
 			temp = temp.next;
@@ -33,12 +25,12 @@ public class LinkedList<T extends Comparable<? super T>> {
 
 	public void addEnd(T t) {
 		if(head==null) {
-			head = new Node(t);
+			head = new Node<T>(t);
 			return;
 		}
 		
-		Node newNode = new Node(t);
-		Node last = head;
+		Node<T> newNode = new Node<T>(t);
+		Node<T> last = head;
 		while(last.next != null) {
 			last = last.next;
 		}
@@ -48,7 +40,7 @@ public class LinkedList<T extends Comparable<? super T>> {
 	}
 	
 	public boolean searchWord(T search) {
-		Node temp = head;
+		Node<T> temp = head;
 		while(temp!=null) {
 			if(search.compareTo(temp.data)==0) {
 				return true;
@@ -61,8 +53,8 @@ public class LinkedList<T extends Comparable<? super T>> {
 
 	public void deleteWord(T search) {
 		
-		Node temp = head;
-		Node prev = null;
+		Node<T> temp = head;
+		Node<T> prev = null;
 		T tempData = (T) temp.data;
 		//if object is found at head
 		if(temp!=null && (tempData).compareTo(search)==0) {
@@ -84,26 +76,26 @@ public class LinkedList<T extends Comparable<? super T>> {
 		
 	}
 
-	public Node mergeSortList(Node head) {
+	public Node<T> mergeSortList(Node<T> head) {
 		if(head==null || head.next==null) {
 			return head;
 		}
-		Node mid = splitList(head);
-		Node nextOfMid = mid.next;
+		Node<T> mid = splitList(head);
+		Node<T> nextOfMid = mid.next;
 		mid.next = null;
 		
-		Node left = mergeSortList(head);
-		Node right = mergeSortList(nextOfMid);
-		Node sortedList = sortedMerge(left,right);
+		Node<T> left = mergeSortList(head);
+		Node<T> right = mergeSortList(nextOfMid);
+		Node<T> sortedList = sortedMerge(left,right);
 		return sortedList;
 	}
 
-	private Node splitList(Node head) {
+	private Node<T> splitList(Node<T> head) {
 		if(head==null) {
 			return head;
 		}
-		Node fast = head.next;
-		Node slow = head;
+		Node<T> fast = head.next;
+		Node<T> slow = head;
 		while(fast!=null) {
 			fast = fast.next;
 			if(fast!=null) {
@@ -114,9 +106,9 @@ public class LinkedList<T extends Comparable<? super T>> {
 		return slow;
 	}
 
-	private Node sortedMerge(Node left, Node right) {
+	private Node<T> sortedMerge(Node<T> left, Node<T> right) {
 		
-		Node result = null;
+		Node<T> result = null;
 		if(left==null)
 			return right;
 		if(right==null)
@@ -134,8 +126,8 @@ public class LinkedList<T extends Comparable<? super T>> {
 
 	public void insertSorted(T search) {
 		
-		Node temp = head;
-		Node newNode = new Node(search);
+		Node<T> temp = head;
+		Node<T> newNode = new Node<T>(search);
 		
 		//empty list 
 		if(temp==null) {

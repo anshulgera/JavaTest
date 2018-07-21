@@ -49,7 +49,7 @@ public class Transact {
 	public void performTransaction(Queue<Integer> queue) {
 		System.out.println("Performing transaction...");
 		if(queue.isEmpty()) {
-			System.out.println("No request to process");
+			System.out.println("No request to process.");
 			return;
 		}
 		int amount = queue.deQueue();

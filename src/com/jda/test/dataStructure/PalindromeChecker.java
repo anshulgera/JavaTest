@@ -2,6 +2,11 @@ package com.jda.test.dataStructure;
 import com.jda.test.logic.Queue;
 import com.jda.test.logic.Utility;
 
+/**
+ * @author Anshul
+ *Checks if entered expression is palindrome or not.
+ *Performed using deQueue Rear function of a queue.
+ */
 public class PalindromeChecker {
 
 	public static void main(String[] args) {

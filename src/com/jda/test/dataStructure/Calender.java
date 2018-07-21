@@ -12,6 +12,12 @@ public class Calender {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		if(args.length<=0) {
+			System.out.println("No command line arguements.");
+			return;
+		}
+		
 		Utility utility = new Utility();
 		int month = Integer.parseInt(args[0]);
 		int year = Integer.parseInt(args[1]);
