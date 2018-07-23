@@ -64,6 +64,7 @@ public class Stack<T> {
 		return;
 	}
 
+	
 	/**
 	 * Evaluates an expression using stack.
 	 * First tokenize the expression.
@@ -71,8 +72,6 @@ public class Stack<T> {
 	 *  Another stack for the operands.
 	 * @param expression
 	 */
-	
-
 	private boolean hasPrecedence(char c, Character peek) {
 		if(peek=='(' || peek==')')
 			return false;
@@ -99,6 +98,7 @@ public class Stack<T> {
 		return (top==null)?true:false;
 	}
 
+	
 	
 	public Integer evaluateExpression(String expression) {
 		//holding the whole expression

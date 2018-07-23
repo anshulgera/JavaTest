@@ -17,6 +17,8 @@ public class PrimeNumbersRange {
 		int range = 1000;
 		Utility utility = new Utility();
 		ArrayList<Integer> primeNumbers = new ArrayList<Integer>();
+		
+		//Utility class function to get prime numbers in a range
 		primeNumbers = utility.getPrimeNumbers(range);
 		int numberOfCols = 0;
 		int numberOfRows = 10;
@@ -27,7 +29,7 @@ public class PrimeNumbersRange {
 		
 		String[][] array = new String[numberOfRows][numberOfCols];
 		
-		//Initialize the array with -1
+		//Initialize the array with empty space 
 		for(String[] row : array) {
 			Arrays.fill(row, " ");
 		}
@@ -37,7 +39,7 @@ public class PrimeNumbersRange {
 		int col = 0;
 		
 		//Enter the prime numbers in 2d array.
-		//-1 in blank spaces
+		//blank spaces for the rest 
 		for(int x=0;x<primeNumbers.size();x++) {
 			
 			if(row != primeNumbers.get(x)/100) {
