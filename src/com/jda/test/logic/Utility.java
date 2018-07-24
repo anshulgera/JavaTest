@@ -13,15 +13,15 @@ import java.util.Scanner;
 
 public class Utility {
 	
-	Scanner scanner;
 	public static int NUMBER_OF_QUESTIONS = 0 ;
 	public String[] months = new String[] {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	public char[] dayNotation = new char[] {'S','M','T','W','T','F','S'};
 	public int[] days = new int[] {31,28,31,30,31,30,31,31,30,31,30,31};
-	
+	Scanner scanner;
 	public Utility(){
 		scanner = new Scanner(System.in);
 	}
+	
 	public String emtpyLine() {
 		return scanner.nextLine();
 	}

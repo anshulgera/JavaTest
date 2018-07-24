@@ -15,15 +15,17 @@ import com.jda.test.logic.Utility;
 public class StockReport {
 
 	public static void main(String[] args) throws IOException {
+		
 		Utility utility = new Utility();
+		
 		System.out.println("Number of stocks : ");
 		int numberOfStocks = utility.inputInteger();
 		utility.emtpyLine();
-		JSONObject jsonObject = new JSONObject();
-		JSONArray jsonArray = new JSONArray();
+		
+		
 		
 		for(int i=0;i<numberOfStocks;i++) {
-			JSONObject stockInfo = new JSONObject();
+			StockInfo stockObject = new StockInfo();
 			
 			System.out.println("Stock Code : ");
 			String stockCode = utility.inputString();
@@ -47,7 +49,7 @@ public class StockReport {
 		ObjectMapper objectMapper = new ObjectMapper();
 		ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
 		
-		String a = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
+
 		
 		try{
 			PrintWriter pw = new PrintWriter("C:\\Users\\1022772\\git\\JavaTest\\jsondata.json");
