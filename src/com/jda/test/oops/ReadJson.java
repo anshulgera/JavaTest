@@ -19,7 +19,7 @@ public class ReadJson {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
 		
 		
-		String fileLocation = "C:\\\\Users\\\\1022772\\\\git\\\\JavaTest\\\\jsonData.json";
+		String fileLocation = "C:\\\\Users\\\\1022772\\\\git\\\\JavaTest\\\\jsonInventory.json";
 		System.out.println("Enter Product : ");
 		String product = new String();
 		product = utility.inputString().toLowerCase();

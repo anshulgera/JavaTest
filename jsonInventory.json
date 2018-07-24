@@ -1,0 +1,24 @@
+{
+    "rice" :[
+                {
+                "name" : "basmati",
+                "price" : "150",
+                "weight" : "100"
+                } ,
+                {
+                "name" : "brown rice",
+                "price" : "110",
+                "weight" : "200"
+                }
+            ],
+
+    "wheat": {
+        "price" : "35",
+        "weight" : "100"
+        },
+    "pulses" : {
+        "price" : "80",
+        "weight" : "150"
+    }
+
+}
