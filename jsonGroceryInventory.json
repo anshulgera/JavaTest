@@ -1,5 +1,5 @@
 {
-	"rice" : [
+	"rice" : 
 		{
 			"basmati"  : {
 				"price" : "120",
@@ -9,13 +9,12 @@
 				"price" : "100",
 				"quantity" : "300"
 			}
-		}
-	]
+		},
 	
 	"wheat" : {
 		"price" : "40",
 		"quantity" : "300"
-	}
+	},
 	"pulses" : {
 		"price" : "110",
 		"quantity" : "500"
