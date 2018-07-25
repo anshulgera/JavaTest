@@ -13,6 +13,10 @@ import org.codehaus.jackson.*;
 import com.jda.test.logic.JsonUtil;
 import com.jda.test.logic.Utility;
 
+/**Generate JSON file by getting input from user and generate the portfolio.
+ * @author Anshul Gera
+ *
+ */
 public class StockReport {
 
 	public static void main(String[] args) throws IOException {
@@ -57,6 +61,7 @@ public class StockReport {
 		
 		String output = jsonUtil.convertJavaToJson(jsonObject);
 		
+		//create JSON file 
 		try{
 			PrintWriter pw = new PrintWriter("/home/bridgelabz/git/JavaTest/jsonInventory.json");
 			pw.write(output);
@@ -66,6 +71,7 @@ public class StockReport {
 		catch(IOException e){
 			e.printStackTrace();
 		}
+		
 		System.out.println(stockPortfolio);
 		
 	}

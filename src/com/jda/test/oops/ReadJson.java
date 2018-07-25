@@ -47,7 +47,7 @@ public class ReadJson {
 		else {
 			JSONObject productObj = (JSONObject)jsonObj.get(product);
 			Integer price = Integer.parseInt((String)productObj.get("price"));
-			Integer quantity = Integer.parseInt((String)productObj.get("weight"));
+			Integer quantity = Integer.parseInt((String)productObj.get("quantity"));
 			System.out.println("Valuation of " + product + " is : " + price*quantity );
 		}
 		//Check if product contains multiple varieties
