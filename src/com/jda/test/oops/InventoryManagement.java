@@ -39,7 +39,7 @@ public class InventoryManagement {
 			jsonObject = manageInventory.deleteProduct(jsonObject, inputProduct);
 			break;
 		}
-		//System.out.println(jsonObject);
+		System.out.println(jsonObject);
 		
 		
 		

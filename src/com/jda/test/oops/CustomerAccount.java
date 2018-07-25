@@ -9,7 +9,7 @@ import com.jda.test.dataStructure.Calender;
 
 public class CustomerAccount {
 	
-	private HashMap<String,Tuple<Integer, String> > map = new HashMap<String, Tuple<Integer, String>>();
+	
 	public void updateHoldings(String companyName, Integer quantity){
 		Date date = new Date();
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

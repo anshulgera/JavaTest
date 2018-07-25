@@ -1,19 +1,11 @@
 package com.jda.test.logic;
 public class Queue<T> {
-	Node front = null;
-	Node tail = null;
+	Node<T> front = null;
+	Node<T> tail = null;
 	
-	class Node{
-		T data;
-		Node next;
-		Node(T t){
-			data = t;
-			next=null;
-			}	
-	}
 	
 	public void enQueue(T value) {
-		Node newNode = new Node(value);
+		Node<T> newNode = new Node<T>(value);
 		if(isEmpty()) {
 			front = newNode;
 			tail = newNode;
@@ -31,7 +23,7 @@ public class Queue<T> {
 			return null;
 		}
 		
-		Node temp = front;
+		Node<T> temp = front;
 		
 		if(temp.next==null) {
 			front = null;
@@ -48,7 +40,7 @@ public class Queue<T> {
 			System.out.println("Empty queue");
 			return;
 		}
-		Node temp = front;
+		Node<T> temp = front;
 		System.out.print("Front->");
 		while(temp!=null) {
 			System.out.print(temp.data + " -> ");
@@ -65,7 +57,7 @@ public class Queue<T> {
 		if(isEmpty()) {
 			return 0;
 		}
-		Node temp = front;
+		Node<T> temp = front;
 		int size = 0;
 		while(temp!=null) {
 			size++;
@@ -87,12 +79,12 @@ public class Queue<T> {
 		if(front == null)
 			return null;
 		if(front.next == null) {
-			Node temp = front;
+			Node<T> temp = front;
 			front = null;
 			return temp.data;
 		}
-		Node newEnd = front;
-		Node end;
+		Node<T> newEnd = front;
+		Node<T> end;
 		while(newEnd.next.next!=null) {
 			newEnd = newEnd.next;
 		}

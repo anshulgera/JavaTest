@@ -2,19 +2,10 @@ package com.jda.test.logic;
 
 public class Stack<T> {
 	
-	public Node top = null;
-	class Node{
-		T data;
-		Node next;
-		Node(T t)
-		{
-			data = t;
-			next = null;
-		}
-
-	}
+	public Node<T> top = null;
+	
 	public void push(T value) {
-		Node newNode = new Node(value);
+		Node<T> newNode = new Node<T>(value);
 		if(top==null) {
 			top = newNode;
 		}
@@ -26,7 +17,7 @@ public class Stack<T> {
 	}
 	
 	public T pop() {
-		Node temp = top;
+		Node<T> temp = top;
 		
 		if(temp==null) {
 			System.out.println("Empty stack");
@@ -50,7 +41,7 @@ public class Stack<T> {
 	 * Alerts if the stack is empty.
 	 */
 	public void printStack() {
-		Node temp = top;
+		Node<T> temp = top;
 		if(temp==null) {
 			System.out.println("Empty stack");
 			return;

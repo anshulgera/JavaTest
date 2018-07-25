@@ -12,16 +12,32 @@ public class ManageInventory {
 			return insertInJsonArray(jsonObject, inputProduct);
 		}
 		
-		
+		//If product doesn't exist
+		InventoryType2 newProduct = new InventoryType2();
+		newProduct = createNewProductType2();
+		jsonObject.put(inputProduct, newProduct);
 		return jsonObject;
 		// TODO Auto-generated method stub
 		
 	}
 
+	private InventoryType2 createNewProductType2() {
+		
+		InventoryType2 newProduct = new InventoryType2();
+		System.out.println("Enter price : ");
+		int price = utility.inputPositiveInteger();
+		newProduct.setPrice(price);
+		
+		System.out.println("Enter Quantity : ");
+		int quantity = utility.inputPositiveInteger();
+		newProduct.setQuantity(quantity);
+		return newProduct;
+	}
+
 	private JSONObject insertInJsonArray(JSONObject jsonObject, String inputProduct) {
 		
 		Inventory newProduct = new Inventory();
-		
+		newProduct = createNewProduct();
 		System.out.println("Enter name of variety : ");
 		String name = utility.inputString();
 		newProduct.setName( name);
@@ -35,17 +51,41 @@ public class ManageInventory {
 		newProduct.setQuantity(quantity);
 		
 		//Add variety to jsonArray
+		JSONArray updatedArray = new JSONArray();
+		updatedArray.add(newProduct);
 		JSONArray jsonArray = (JSONArray) jsonObject.get(inputProduct);
-		jsonArray.add(newProduct.toString());
-		System.out.println("JSON array : " + jsonArray);
+		
+		//add elements to updatedJSONArray
+		for(int i=0;i<jsonArray.size();i++) {
+			JSONObject tempObj = new JSONObject();
+			tempObj = (JSONObject) jsonArray.get(i);
+			updatedArray.add(tempObj);
+		}
+		
 		
 		//Update jsonObject
 		jsonObject.remove(inputProduct);
-		System.out.println("After removing rice : " + jsonObject);
-		jsonObject.put(inputProduct, jsonArray);
-		System.out.println("Final jsonObject" + jsonObject);
+		//System.out.println("After removing rice : " + jsonObject);
+		jsonObject.put(inputProduct, updatedArray);
+		//System.out.println("Final jsonObject" + jsonObject);
 		return jsonObject;
 		
+	}
+
+	private Inventory createNewProduct() {
+		Inventory newProduct = new Inventory();
+		System.out.println("Enter name of variety : ");
+		String name = utility.inputString();
+		newProduct.setName( name);
+		
+		System.out.println("Enter price : ");
+		int price = utility.inputPositiveInteger();
+		newProduct.setPrice(price);
+		
+		System.out.println("Enter Quantity : ");
+		int quantity = utility.inputPositiveInteger();
+		newProduct.setQuantity(quantity);
+		return newProduct;
 	}
 
 	public JSONObject deleteProduct(JSONObject jsonObject, String productName) {
