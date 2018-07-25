@@ -22,6 +22,11 @@ public class StockAccount {
 			//Create customer account
 		CustomerAccount customer = new CustomerAccount();
 		
+		System.out.println("Enter type of tramnsaction : ");
+		int choice = utility.inputPositiveInteger();
+		while(true){
+			
+		}
 		
 
 	}

@@ -33,6 +33,9 @@ public class Inventory implements Serializable{
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public String toString(){
+		return "{" +  "\"name\":\"" + name + "\"," + "\"quantity\":" + quantity + ",\"price\":" + price + "}" ; 
+	}
 	
 
 }

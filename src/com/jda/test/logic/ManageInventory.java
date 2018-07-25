@@ -36,7 +36,7 @@ public class ManageInventory {
 		
 		//Add variety to jsonArray
 		JSONArray jsonArray = (JSONArray) jsonObject.get(inputProduct);
-		jsonArray.add(newProduct);
+		jsonArray.add(newProduct.toString());
 		System.out.println("JSON array : " + jsonArray);
 		
 		//Update jsonObject
