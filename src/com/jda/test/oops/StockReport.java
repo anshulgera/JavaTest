@@ -10,6 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.codehaus.jackson.*;
 
+import com.jda.test.logic.JsonUtil;
 import com.jda.test.logic.Utility;
 
 public class StockReport {
@@ -17,49 +18,55 @@ public class StockReport {
 	public static void main(String[] args) throws IOException {
 		
 		Utility utility = new Utility();
-		
+		JsonUtil jsonUtil = new JsonUtil();
 		System.out.println("Number of stocks : ");
 		int numberOfStocks = utility.inputInteger();
 		utility.emtpyLine();
 		
+		JSONObject jsonObject = new JSONObject();
+		JSONArray stockArrayJSON =  new JSONArray();
 		
+		String stockPortfolio = new String();
 		
+		//Enter stocks information
 		for(int i=0;i<numberOfStocks;i++) {
 			StockInfo stockObject = new StockInfo();
 			
 			System.out.println("Stock Code : ");
 			String stockCode = utility.inputString();
-			stockInfo.put("stcokCode", stockCode);
+			stockObject.setStockName(stockCode);
 			
 			System.out.println("Stock Price : ");
 			double stockPrice = utility.inputDouble();
-			stockInfo.put("stockPrice", stockPrice);
+			stockObject.setStockPrice(stockPrice);
 			
 			System.out.println("Number of shares : ");
 			int stockQuantity = utility.inputPositiveInteger();
-			stockInfo.put("stockQuantity", stockQuantity);
+			stockObject.setStockQuantity(stockQuantity);
 			
 			utility.emtpyLine();
 			
-			jsonArray.add(stockInfo);
+			//Add stock information to the JSONArray
+			stockArrayJSON.add(stockObject);
+			stockPortfolio += stockObject.getStockPortFolio();
 			
 		}
-		jsonObject.put("stocks", jsonArray);
 		
-		ObjectMapper objectMapper = new ObjectMapper();
-		ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
+		//Add stockArray to the JSONObject
+		jsonObject.put("stocks", stockArrayJSON);
 		
-
+		String output = jsonUtil.convertJavaToJson(jsonObject);
 		
 		try{
-			PrintWriter pw = new PrintWriter("C:\\Users\\1022772\\git\\JavaTest\\jsondata.json");
-			pw.write(jsonObject.toJSONString());
+			PrintWriter pw = new PrintWriter("/home/bridgelabz/git/JavaTest/jsonInventory.json");
+			pw.write(output);
 			pw.flush();
 			pw.close();
 		}
 		catch(IOException e){
 			e.printStackTrace();
 		}
+		System.out.println(stockPortfolio);
 		
 	}
 

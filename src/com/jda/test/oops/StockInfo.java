@@ -2,6 +2,7 @@ package com.jda.test.oops;
 
 import java.io.Serializable;
 
+
 public class StockInfo implements Serializable{
 	
 	/**
@@ -29,5 +30,11 @@ public class StockInfo implements Serializable{
 	}
 	public void setStockQuantity(int stockQuantity) {
 		this.stockQuantity = stockQuantity;
+	}
+	public String getStockPortFolio() {
+		String info = "";
+		info = getStockName() + "  -> Valuation : ";
+		info += getStockPrice()*getStockQuantity()  + "\n";
+		return info;
 	}
 }

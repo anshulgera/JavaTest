@@ -19,13 +19,15 @@ public class ReadJson {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
 		
 		
-		String fileLocation = "C:\\\\Users\\\\1022772\\\\git\\\\JavaTest\\\\jsonInventory.json";
+		//String fileLocation = "C:\\\\Users\\\\1022772\\\\git\\\\JavaTest\\\\jsonInventory.json";
+		String requestURL = "https://raw.githubusercontent.com/anshulgera/JavaTest/dataStructure/jsonInventory.json";
+		String jsonFromURL = utility.readStringFromURL(requestURL);
 		System.out.println("Enter Product : ");
 		String product = new String();
 		product = utility.inputString().toLowerCase();
 		
 		//Read JSON file and create JSON Object
-		Object obj = new JSONParser().parse(new FileReader(fileLocation));
+		Object obj = new JSONParser().parse(jsonFromURL);
 		JSONObject jsonObj =(JSONObject)obj;
 		
 		//Check if product exists, return if it doesn't
@@ -35,7 +37,7 @@ public class ReadJson {
 		}
 		
 	
-		// If product contains varieties, cerate JSON Array
+		// If product contains varieties, create JSON Array
 		if(jsonObj.get(product).getClass().getName()=="org.json.simple.JSONArray") {
 			
 			JSONArray productArray = (JSONArray)jsonObj.get(product);
