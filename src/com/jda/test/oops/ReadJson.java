@@ -1,12 +1,10 @@
 package com.jda.test.oops;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import com.jda.test.logic.Utility;
 
 /**Read a JSON file and print the valuation of a product.
@@ -74,7 +72,7 @@ public class ReadJson {
 			JSONObject arrayObj = (JSONObject) productArray.get(i);
 			if(arrayObj.get("name").equals(variety)) {
 				Integer price = Integer.parseInt((String)arrayObj.get("price"));
-				Integer quantity = Integer.parseInt((String)arrayObj.get("weight"));
+				Integer quantity = Integer.parseInt((String)arrayObj.get("quantity"));
 				System.out.println("Valuation of " + variety + " is : " + price*quantity );
 				return;
 			}

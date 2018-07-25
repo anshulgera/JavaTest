@@ -23,6 +23,7 @@ public class StockReport {
 		
 		Utility utility = new Utility();
 		JsonUtil jsonUtil = new JsonUtil();
+		
 		System.out.println("Number of stocks : ");
 		int numberOfStocks = utility.inputInteger();
 		utility.emtpyLine();
@@ -52,7 +53,7 @@ public class StockReport {
 			
 			//Add stock information to the JSONArray
 			stockArrayJSON.add(stockObject);
-			stockPortfolio += stockObject.getStockPortFolio();
+			stockPortfolio += stockObject.stockPortFolio();
 			
 		}
 		
@@ -63,10 +64,11 @@ public class StockReport {
 		
 		//create JSON file 
 		try{
-			PrintWriter pw = new PrintWriter("/home/bridgelabz/git/JavaTest/jsonInventory.json");
+			PrintWriter pw = new PrintWriter("/home/bridgelabz/git/JavaTest/jsonStocksInformation.json");
 			pw.write(output);
 			pw.flush();
 			pw.close();
+			System.out.println("File created with stocks information.");
 		}
 		catch(IOException e){
 			e.printStackTrace();

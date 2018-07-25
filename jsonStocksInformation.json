@@ -1,0 +1,7 @@
+{"stocks":
+[{"stockName":"AAPL","stockPrice":100.0,"stockQuantity":200},
+{"stockName":"GOOGL","stockPrice":100.0,"stockQuantity":300},
+{"stockName":"IBM","stockPrice":300.0,"stockQuantity":300},
+{"stockName":"FB","stockPrice":400.0,"stockQuantity":40},
+{"stockName":"CISCO","stockPrice":90.0,"stockQuantity":90}
+]}
