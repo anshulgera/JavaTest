@@ -1,15 +1,16 @@
 {
-	"rice" : 
-		{
-			"basmati"  : {
-				"price" : "120",
-				"quantity" : "200"
+	"rice" : [
+					{
+						"name" : "basmati",   
+					    "price" : "120",
+						"quantity" : "200"
 				},
-			"brown rice" : {
+				{
+			"name" : "brown rice" ,
 				"price" : "100",
 				"quantity" : "300"
 			}
-		},
+		],
 	
 	"wheat" : {
 		"price" : "40",
