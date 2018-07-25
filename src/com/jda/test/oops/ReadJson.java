@@ -1,6 +1,5 @@
 package com.jda.test.oops;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 import org.json.simple.JSONArray;
@@ -20,7 +19,7 @@ public class ReadJson {
 		
 		
 		//String fileLocation = "C:\\\\Users\\\\1022772\\\\git\\\\JavaTest\\\\jsonInventory.json";
-		String requestURL = "https://raw.githubusercontent.com/anshulgera/JavaTest/dataStructure/jsonInventory.json";
+		String requestURL = "https://raw.githubusercontent.com/anshulgera/JavaTest/OOPs/jsonGroceryInventory.json";
 		String jsonFromURL = utility.readStringFromURL(requestURL);
 		System.out.println("Enter Product : ");
 		String product = new String();
