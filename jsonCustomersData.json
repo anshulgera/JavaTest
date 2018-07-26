@@ -1,6 +1,6 @@
 [
 	{	
-		"name" : "Anshul",
+		"name" : "anshul",
 		"holdings" : [
 								{
 									"code" : "TCS",
@@ -9,7 +9,7 @@
 							]
 	},
 	{
-		"name" : "Gera",
+		"name" : "gera",
 		"holdings" : [	{
 										"code"  : "INFY",
 										"quantity" : 10

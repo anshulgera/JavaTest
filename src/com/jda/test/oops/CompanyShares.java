@@ -1,27 +1,26 @@
 package com.jda.test.oops;
 
 public class CompanyShares {
-	private String companyName;
-	private int quantityAvailable;
+	private String code;
+	private int quantity;
 	private double price;
-	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public double getPrice() {
 		return price;
 	}
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public String getCompanyName() {
-		return companyName;
-	}
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-	public int getQuantityAvailable() {
-		return quantityAvailable;
-	}
-	public void setQuantityAvailable(int quantityAvailable) {
-		this.quantityAvailable = quantityAvailable;
-	}
-
+	
 }
