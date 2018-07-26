@@ -1,13 +1,20 @@
 package com.jda.test.oops;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
+
+import com.jda.test.logic.JsonUtil;
 import com.jda.test.logic.Utility;
 
 public class Transaction {
 	private static Utility utility;
+	private static ObjectMapper mapper;
 	static{
 		utility = new Utility();
+		mapper = new ObjectMapper();
 	}
 
 	public void buy(CustomerAccount customerAccount, ArrayList<CompanyShares> companyInfo) {
@@ -27,17 +34,18 @@ public class Transaction {
 		
 		//If company doesn't exist
 		if(!companyExists){
-			System.out.println("No such company.");
+			System.out.println("No such company.\n Transaction Failed");
 			return;
 		}
 		
 		//Get required quantity
 		System.out.println("Enter quantity : ");
 		int reqQuantity = utility.inputPositiveInteger();
+		utility.emtpyLine();
 		
 		//Check if required quantity exists.
 		if(reqQuantity>companyInfo.get(companyIndex).getQuantity()){
-			System.out.println("Required Quantity exceeds Available Quantity.");
+			System.out.println("Required Quantity exceeds Available Quantity.\n Transaction Failed");
 			return;
 		}
 		
@@ -45,6 +53,15 @@ public class Transaction {
 		ArrayList<StockTuple> currentHoldings = customerAccount.getHoldings();
 		int stockPosition;
 		boolean companyExistsInHoldings = false;
+		
+		if(currentHoldings.isEmpty()){
+			StockTuple tuple = new StockTuple();
+			tuple.setCode(code);
+			tuple.setQuantity(reqQuantity);
+			currentHoldings.add(tuple);
+			System.out.println("Bought : " + code + ", Quantity : " + reqQuantity);	
+			return;
+			}
 		
 		//Check if company exists in customer's current holdings.
 		for(stockPosition=0;stockPosition<currentHoldings.size();stockPosition++){
@@ -80,10 +97,7 @@ public class Transaction {
 	public void sell(CustomerAccount customerAccount, ArrayList<CompanyShares> companyInfo) {
 		
 		ArrayList<StockTuple> currentHoldings = customerAccount.getHoldings();
-		System.out.println("Your current holdings : ");
-		for(int i=0;i<currentHoldings.size();i++){
-			System.out.println(currentHoldings.get(i).getCode() + " : " + currentHoldings.get(i).getQuantity());
-		}
+		printReport(currentHoldings);
 		
 		System.out.println("Enter code of stock to sell.");
 		String sellCode = utility.inputString();
@@ -96,14 +110,17 @@ public class Transaction {
 		}
 		
 		if(sellCodeIndex==currentHoldings.size()){
-			System.out.println("Stock doesn't exist in holdings, hance can't sell.");
+			System.out.println("Stock doesn't exist in holdings, hence can't sell.\n Transaction Failed.");
 			return;
 		}
 		
 		System.out.println("Enter Sell Quantity : ");
 		int sellQuantity = utility.inputPositiveInteger();
+		utility.emtpyLine();
+		
+		//If sell quantity is greater than available, transaction fails.
 		if(currentHoldings.get(sellCodeIndex).getQuantity()<sellQuantity){
-			System.out.println("Sell quantity greater than available Quantity. Transaction Failed.");
+			System.out.println("Sell quantity greater than available Quantity.\n Transaction Failed.");
 			return;
 		}
 		
@@ -117,7 +134,73 @@ public class Transaction {
 		}
 		companyInfo.get(companyIndex).setQuantity(companyInfo.get(companyIndex).getQuantity() + sellQuantity);
 		System.out.println("Sold : " + sellCode + ", Quantity : " + sellQuantity);
+		
+		if(currentHoldings.get(sellCodeIndex).getQuantity().equals(0)){
+			currentHoldings.remove(sellCodeIndex);
+		}
 		return;
 	}
+
+	public void printReport(ArrayList<StockTuple> currentHoldings) {
+		System.out.println("Your current holdings : ");
+		if(currentHoldings.size()==0){
+			System.out.println("Portfolio empty.");
+			return;
+		}
+		for(int i=0;i<currentHoldings.size();i++){
+			System.out.println(currentHoldings.get(i).getCode() + " : " + currentHoldings.get(i).getQuantity());
+		}
+		
+	}
+
+	public void printValuation(ArrayList<StockTuple> holdings) throws IOException {
+
+		System.out.println("Your PortFolio's valuation : ");
+		if(holdings.size()==0){
+			System.out.println("Portfolio empty.");
+			return;
+		}
+		double valuation =0;
+		for(int i=0;i<holdings.size();i++){
+			String code = holdings.get(i).getCode();
+			double  price = findPrice(code);
+			int quantity = holdings.get(i).getQuantity();
+			System.out.println(code + " : " + quantity +" * " + price);
+			valuation += price*quantity;
+		}
+		System.out.println("Total Valuation : " + valuation);
+		return;
+	}
+
+	private double findPrice(String code) throws IOException {
+		
+		ObjectMapper mapper  = new ObjectMapper();
+		
+		String requestURLStock = "https://raw.githubusercontent.com/anshulgera/JavaTest/OOPs/jsonStockData.json";
+		String stockJsonFromURL = utility.readStringFromURL(requestURLStock);
+		
+		//Hold all company information in an ArrayList
+		ArrayList<CompanyShares> companyInfo = new ArrayList<CompanyShares>();
+		companyInfo = mapper.readValue(stockJsonFromURL, new TypeReference<ArrayList<CompanyShares>>(){});	
+		
+		int companyIndex;
+		for(companyIndex = 0;companyIndex<companyInfo.size();companyIndex++){
+			if(companyInfo.get(companyIndex).getCode().equals(code)){
+				break;
+			}
+		}
+		return companyInfo.get(companyIndex).getPrice();
+		
+		
+	}
+
+	public void save(ArrayList<CustomerAccount> accountHolders, ArrayList<CompanyShares> companyInfo) {
+		String json = JsonUtil.convertJavaToJson(accountHolders);
+		System.out.println(json);
+		return;
+		
+	}
+	
+	
 
 }

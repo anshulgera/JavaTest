@@ -47,12 +47,13 @@ public class StockAccount {
 		//if User doesn't exist. Add customer in accountHodlers ArrayList.
 		if(!userExist){
 			System.out.println("User doesn't exist.");
-			System.out.println("Enter new account holder's name : ");
-			String newName = utility.inputString();
+			System.out.println("Creating new account for the user.");
 			CustomerAccount newCustomer  = new CustomerAccount();
-			newCustomer.setName(newName);
-			newCustomer.setHoldings(null);
+			newCustomer.setName(user);
+			ArrayList<StockTuple> emptyList = new ArrayList<StockTuple>();
+			newCustomer.setHoldings(emptyList);
 			accountHolders.add(newCustomer);
+			System.out.println("Account created.");
 		}
 		
 		
@@ -60,9 +61,10 @@ public class StockAccount {
 		Transaction transaction  = new Transaction();
 		
 		while(true){
-			System.out.println("1.Buy  2.Sell  3.Save  4.PrintReport  5.Exit");
+			System.out.println("1.Buy  2.Sell  3.Save  4.PrintReport  5.PortFolio Value  6.Exit");
 			int choice = utility.inputPositiveInteger();
-			if(choice>0 && choice<6){
+			utility.emtpyLine();
+			if(choice>0 && choice<7){
 				switch(choice){
 				case 1:
 					transaction.buy(accountHolders.get(customerIndex), companyInfo);
@@ -71,18 +73,24 @@ public class StockAccount {
 					transaction.sell(accountHolders.get(customerIndex), companyInfo );
 					continue;
 				case 3:
+					transaction.save(accountHolders, companyInfo);
+					continue;
+				case 4:
+					transaction.printReport(accountHolders.get(customerIndex).getHoldings());
+					continue;
+				case 5:
+					transaction.printValuation(accountHolders.get(customerIndex).getHoldings());
+					continue;
+				case 6:
+					break;
 					
 				}
-				break;
 			}
 			else{
 				System.out.println("Invalid Input. Enter Again");
 				choice = utility.inputPositiveInteger();
 			}
 		}
-		
-		System.out.println(companyInfo.get(0).getCode());
-		System.out.println(companyInfo.get(0).getQuantity());
 		
 		
 		
