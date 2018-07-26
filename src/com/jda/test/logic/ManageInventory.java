@@ -37,7 +37,7 @@ public class ManageInventory {
 	private JSONObject insertInJsonArray(JSONObject jsonObject, String inputProduct) {
 		
 		Inventory newProduct = new Inventory();
-		newProduct = createNewProduct();
+		JsonUtil  jsonUtil = new JsonUtil();
 		System.out.println("Enter name of variety : ");
 		String name = utility.inputString();
 		newProduct.setName( name);
@@ -50,9 +50,12 @@ public class ManageInventory {
 		int quantity = utility.inputPositiveInteger();
 		newProduct.setQuantity(quantity);
 		
+		//String resultJson = jsonUtil.convertJavaToJson(newProduct);
+		//System.out.println(resultJson);
 		//Add variety to jsonArray
 		JSONArray updatedArray = new JSONArray();
 		updatedArray.add(newProduct);
+		//System.out.println(updatedArray);
 		JSONArray jsonArray = (JSONArray) jsonObject.get(inputProduct);
 		
 		//add elements to updatedJSONArray
@@ -65,27 +68,12 @@ public class ManageInventory {
 		
 		//Update jsonObject
 		jsonObject.remove(inputProduct);
+		
 		//System.out.println("After removing rice : " + jsonObject);
 		jsonObject.put(inputProduct, updatedArray);
 		//System.out.println("Final jsonObject" + jsonObject);
 		return jsonObject;
 		
-	}
-
-	private Inventory createNewProduct() {
-		Inventory newProduct = new Inventory();
-		System.out.println("Enter name of variety : ");
-		String name = utility.inputString();
-		newProduct.setName( name);
-		
-		System.out.println("Enter price : ");
-		int price = utility.inputPositiveInteger();
-		newProduct.setPrice(price);
-		
-		System.out.println("Enter Quantity : ");
-		int quantity = utility.inputPositiveInteger();
-		newProduct.setQuantity(quantity);
-		return newProduct;
 	}
 
 	public JSONObject deleteProduct(JSONObject jsonObject, String productName) {

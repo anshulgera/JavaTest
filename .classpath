@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Anshul/Downloads/jackson-all-1.9.0.jar/jackson-all-1.9.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Anshul/Downloads/json-simple-1.1.jar/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/bridgelabz/Downloads/jackson-all-1.9.0.jar"/>
+	<classpathentry kind="lib" path="/home/bridgelabz/Downloads/json-simple-1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
