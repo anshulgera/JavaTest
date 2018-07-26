@@ -29,15 +29,16 @@ public class StockAccount {
 		//Hold Customers information in an ArrayList
 		ArrayList<CustomerAccount> accountHolders = new ArrayList<CustomerAccount>();
 		accountHolders = mapper.readValue(customerJsonFromURL, new TypeReference<ArrayList<CustomerAccount>>(){});
+				
 		
 		System.out.println("Enter your name : ");
 		String user = utility.inputString().toLowerCase();
-		int i;
+		int customerIndex;
 		boolean userExist = false;
 		
 		//Check if user exists.
-		for(i=0;i<accountHolders.size();i++){
-			if(user.equals(accountHolders.get(i).getName())){
+		for(customerIndex=0;customerIndex<accountHolders.size();customerIndex++){
+			if(user.equals(accountHolders.get(customerIndex).getName())){
 				userExist = true;
 				break;
 			}
@@ -52,19 +53,25 @@ public class StockAccount {
 			newCustomer.setName(newName);
 			newCustomer.setHoldings(null);
 			accountHolders.add(newCustomer);
-			i++;
 		}
 		
-		System.out.println("1.Buy  2.Sell  3.Save  4.PrintReport  5.Exit");
-		int choice = utility.inputPositiveInteger();
+		
 		
 		Transaction transaction  = new Transaction();
+		
 		while(true){
+			System.out.println("1.Buy  2.Sell  3.Save  4.PrintReport  5.Exit");
+			int choice = utility.inputPositiveInteger();
 			if(choice>0 && choice<6){
 				switch(choice){
 				case 1:
-					transaction.buy(accountHolders.get(i), companyInfo);
+					transaction.buy(accountHolders.get(customerIndex), companyInfo);
 					continue;
+				case 2:
+					transaction.sell(accountHolders.get(customerIndex), companyInfo );
+					continue;
+				case 3:
+					
 				}
 				break;
 			}
@@ -74,9 +81,10 @@ public class StockAccount {
 			}
 		}
 		
-		for(int j=0;j<companyInfo.size();j++){
-			System.out.println(companyInfo.get(j));
-		}
+		System.out.println(companyInfo.get(0).getCode());
+		System.out.println(companyInfo.get(0).getQuantity());
+		
+		
 		
 		
 		
