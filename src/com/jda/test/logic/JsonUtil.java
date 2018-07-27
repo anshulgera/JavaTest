@@ -6,12 +6,8 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 public class JsonUtil {
 	
-	private static ObjectMapper mapper;
-	static {
-		mapper = new ObjectMapper();
-	}
-	
-	public static String convertJavaToJson(Object object) {
+	public  String convertJavaToJson(Object object) {
+		ObjectMapper mapper = new ObjectMapper();
 		String jsonResult = "";
 		try {
 			jsonResult = mapper.writeValueAsString(object);

@@ -1,6 +1,7 @@
 package com.jda.test.oops;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -16,9 +17,15 @@ public class Transaction {
 		utility = new Utility();
 		mapper = new ObjectMapper();
 	}
+	
+	public String getTimeStamp(){
+		String date = new SimpleDateFormat("HH.mm.ss.dd.MM.yyyy").format(new java.util.Date());
+		return date;
+	}
 
-	public void buy(CustomerAccount customerAccount, ArrayList<CompanyShares> companyInfo) {
+	public void buy(CustomerAccount customerAccount, ArrayList<CompanyShares> companyInfo, ArrayList<TransactionDetails> transactionArray) {
 		
+		TransactionDetails details = new TransactionDetails();
 		System.out.println("Enter Code of company to buy");
 		String code = utility.inputString();
 		int companyIndex;
@@ -55,46 +62,51 @@ public class Transaction {
 		boolean companyExistsInHoldings = false;
 		
 		if(currentHoldings.isEmpty()){
-			StockTuple tuple = new StockTuple();
-			tuple.setCode(code);
-			tuple.setQuantity(reqQuantity);
-			currentHoldings.add(tuple);
-			System.out.println("Bought : " + code + ", Quantity : " + reqQuantity);	
-			return;
+						StockTuple tuple = new StockTuple();
+						tuple.setCode(code);
+						tuple.setQuantity(reqQuantity);
+						currentHoldings.add(tuple);
+						System.out.println("Bought : " + code + ", Quantity : " + reqQuantity);	
 			}
-		
-		//Check if company exists in customer's current holdings.
-		for(stockPosition=0;stockPosition<currentHoldings.size();stockPosition++){
-			if(currentHoldings.get(stockPosition).getCode().equals(code)){
-				companyExistsInHoldings = true;
-				break;
-			}
-		}
-		
-		//Add stock in current holdings array if it doesn't exist already.
-		if(!companyExistsInHoldings){
-			StockTuple tuple = new StockTuple();
-			tuple.setCode(code);
-			tuple.setQuantity(reqQuantity);
-			currentHoldings.add(tuple);
-		}else{
-			//If stock already exists in current holdings, update value.
-			int currQuantity = currentHoldings.get(stockPosition).getQuantity();
-			currQuantity += reqQuantity;
-			currentHoldings.get(stockPosition).setQuantity(currQuantity);
-			
-		}
-		int currentCompanyQuantity = companyInfo.get(companyIndex).getQuantity();
-		currentCompanyQuantity -= reqQuantity;
-		
-		//Update quantity avaliable
-		companyInfo.get(companyIndex).setQuantity(currentCompanyQuantity);
-		System.out.println("Bought : " + code + ", Quantity : " + reqQuantity);
+		else{
+						//Check if company exists in customer's current holdings.
+						for(stockPosition=0;stockPosition<currentHoldings.size();stockPosition++){
+							if(currentHoldings.get(stockPosition).getCode().equals(code)){
+								companyExistsInHoldings = true;
+								break;
+							}
+						}
+						
+						//Add stock in current holdings array if it doesn't exist already.
+						if(!companyExistsInHoldings){
+							StockTuple tuple = new StockTuple();
+							tuple.setCode(code);
+							tuple.setQuantity(reqQuantity);
+							currentHoldings.add(tuple);
+						}else{
+							//If stock already exists in current holdings, update value.
+							int currQuantity = currentHoldings.get(stockPosition).getQuantity();
+							currQuantity += reqQuantity;
+							currentHoldings.get(stockPosition).setQuantity(currQuantity);
+							
+						}
+						int currentCompanyQuantity = companyInfo.get(companyIndex).getQuantity();
+						currentCompanyQuantity -= reqQuantity;
+						
+						//Update quantity avaliable
+						companyInfo.get(companyIndex).setQuantity(currentCompanyQuantity);
+						System.out.println("Bought : " + code + ", Quantity : " + reqQuantity);
+						}
+		details.setUserName(customerAccount.getName());
+		details.setTransactionType("Buy");
+		details.setQuantity(reqQuantity);
+		details.setStockCode(companyInfo.get(companyIndex).getCode());
+		details.setTimeStamp(getTimeStamp());
+		transactionArray.add(details);
 		return;
-		
 	}
 
-	public void sell(CustomerAccount customerAccount, ArrayList<CompanyShares> companyInfo) {
+	public void sell(CustomerAccount customerAccount, ArrayList<CompanyShares> companyInfo, ArrayList<TransactionDetails> transactionArray) {
 		
 		ArrayList<StockTuple> currentHoldings = customerAccount.getHoldings();
 		printReport(currentHoldings);
@@ -138,6 +150,13 @@ public class Transaction {
 		if(currentHoldings.get(sellCodeIndex).getQuantity().equals(0)){
 			currentHoldings.remove(sellCodeIndex);
 		}
+		TransactionDetails details = new TransactionDetails();
+		details.setUserName(customerAccount.getName());
+		details.setQuantity(sellQuantity);
+		details.setStockCode(companyInfo.get(companyIndex).getCode());
+		details.setStockPrice(companyInfo.get(companyIndex).getPrice());
+		details.setTimeStamp(getTimeStamp());
+		transactionArray.add(details);
 		return;
 	}
 
@@ -194,9 +213,18 @@ public class Transaction {
 		
 	}
 
-	public void save(ArrayList<CustomerAccount> accountHolders, ArrayList<CompanyShares> companyInfo) {
-		String json = JsonUtil.convertJavaToJson(accountHolders);
-		System.out.println(json);
+	public void save(ArrayList<CustomerAccount> accountHolders, ArrayList<CompanyShares> companyInfo, ArrayList<TransactionDetails> transactionArray) {
+		System.out.println("This");
+		JsonUtil util = new JsonUtil();
+		String jsonCompany = util.convertJavaToJson(companyInfo);
+		System.out.println(jsonCompany);
+		//String jsonCustomers = util.convertJavaToJson(accountHolders);
+		//System.out.println(jsonCustomers);
+		System.out.println("Here");
+		
+		
+		String jsonTransaction = util.convertJavaToJson(transactionArray);
+		System.out.println(jsonTransaction);
 		return;
 		
 	}

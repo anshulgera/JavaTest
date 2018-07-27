@@ -44,7 +44,7 @@ public class StockAccount {
 			}
 		}
 		
-		//if User doesn't exist. Add customer in accountHodlers ArrayList.
+		//if User doesn't exist. Add customer in accountHolders ArrayList.
 		if(!userExist){
 			System.out.println("User doesn't exist.");
 			System.out.println("Creating new account for the user.");
@@ -59,7 +59,9 @@ public class StockAccount {
 		
 		
 		Transaction transaction  = new Transaction();
+		ArrayList<TransactionDetails> transactionArray = new ArrayList<TransactionDetails>();
 		
+		//Transaction methods
 		while(true){
 			System.out.println("1.Buy  2.Sell  3.Save  4.PrintReport  5.PortFolio Value  6.Exit");
 			int choice = utility.inputPositiveInteger();
@@ -67,13 +69,14 @@ public class StockAccount {
 			if(choice>0 && choice<7){
 				switch(choice){
 				case 1:
-					transaction.buy(accountHolders.get(customerIndex), companyInfo);
+					transaction.buy(accountHolders.get(customerIndex), companyInfo, transactionArray);
 					continue;
 				case 2:
-					transaction.sell(accountHolders.get(customerIndex), companyInfo );
+					transaction.sell(accountHolders.get(customerIndex), companyInfo, transactionArray );
 					continue;
 				case 3:
-					transaction.save(accountHolders, companyInfo);
+					System.out.print("Above 3");
+					transaction.save(accountHolders, companyInfo, transactionArray);
 					continue;
 				case 4:
 					transaction.printReport(accountHolders.get(customerIndex).getHoldings());
@@ -82,22 +85,15 @@ public class StockAccount {
 					transaction.printValuation(accountHolders.get(customerIndex).getHoldings());
 					continue;
 				case 6:
-					break;
+					return;
 					
 				}
 			}
 			else{
-				System.out.println("Invalid Input. Enter Again");
-				choice = utility.inputPositiveInteger();
+				System.out.println("Invalid Input.");
 			}
 		}
 		
-		
-		
-		
-		
-		
-			
 		}
 }
 
