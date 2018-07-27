@@ -1,13 +1,6 @@
 package com.jda.test.oops;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import com.jda.test.dataStructure.Calender;
 
 public class CustomerAccount {
 	

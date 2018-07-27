@@ -1,0 +1,22 @@
+[
+	{
+	"code" : "RIL",
+	"quantity" : 1000,
+	"price" : 1000  
+	},
+	{
+		"code" : "TCS",
+		"quantity" : 2000,
+		"price" : 1300
+	},
+	{
+		"code" : "ITC",
+		"quantity" : 3000,
+		"price" : 250
+	},
+	{	
+		"code" : "INFY",
+		"quantity" : 1500,
+		"price" : 1300
+	}
+] 

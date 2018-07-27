@@ -1,5 +1,6 @@
 package com.jda.test.oops;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,10 +13,8 @@ import com.jda.test.logic.Utility;
 
 public class Transaction {
 	private static Utility utility;
-	private static ObjectMapper mapper;
 	static{
 		utility = new Utility();
-		mapper = new ObjectMapper();
 	}
 	
 	public String getTimeStamp(){
@@ -65,8 +64,7 @@ public class Transaction {
 						StockTuple tuple = new StockTuple();
 						tuple.setCode(code);
 						tuple.setQuantity(reqQuantity);
-						currentHoldings.add(tuple);
-						System.out.println("Bought : " + code + ", Quantity : " + reqQuantity);	
+						currentHoldings.add(tuple);	
 			}
 		else{
 						//Check if company exists in customer's current holdings.
@@ -90,13 +88,16 @@ public class Transaction {
 							currentHoldings.get(stockPosition).setQuantity(currQuantity);
 							
 						}
-						int currentCompanyQuantity = companyInfo.get(companyIndex).getQuantity();
-						currentCompanyQuantity -= reqQuantity;
 						
-						//Update quantity avaliable
-						companyInfo.get(companyIndex).setQuantity(currentCompanyQuantity);
-						System.out.println("Bought : " + code + ", Quantity : " + reqQuantity);
 						}
+		int currentCompanyQuantity = companyInfo.get(companyIndex).getQuantity();
+		currentCompanyQuantity -= reqQuantity;
+		
+		//Update quantity avaliable
+		companyInfo.get(companyIndex).setQuantity(currentCompanyQuantity);
+		
+		System.out.println("Bought : " + code + ", Quantity : " + reqQuantity);
+		
 		details.setUserName(customerAccount.getName());
 		details.setTransactionType("Buy");
 		details.setQuantity(reqQuantity);
@@ -110,6 +111,12 @@ public class Transaction {
 		
 		ArrayList<StockTuple> currentHoldings = customerAccount.getHoldings();
 		printReport(currentHoldings);
+		
+		//If portfolio is empty, nothing to sell.
+		if(currentHoldings.isEmpty()) {
+			System.out.println("Nothing in protfolio to sell.");
+			return;
+		}
 		
 		System.out.println("Enter code of stock to sell.");
 		String sellCode = utility.inputString();
@@ -153,6 +160,7 @@ public class Transaction {
 		TransactionDetails details = new TransactionDetails();
 		details.setUserName(customerAccount.getName());
 		details.setQuantity(sellQuantity);
+		details.setTransactionType("Sell");
 		details.setStockCode(companyInfo.get(companyIndex).getCode());
 		details.setStockPrice(companyInfo.get(companyIndex).getPrice());
 		details.setTimeStamp(getTimeStamp());
@@ -195,12 +203,14 @@ public class Transaction {
 		
 		ObjectMapper mapper  = new ObjectMapper();
 		
-		String requestURLStock = "https://raw.githubusercontent.com/anshulgera/JavaTest/OOPs/jsonStockData.json";
-		String stockJsonFromURL = utility.readStringFromURL(requestURLStock);
+		//String requestURLStock = "https://raw.githubusercontent.com/anshulgera/JavaTest/OOPs/jsonStockData.json";
+		//String stockJsonFromURL = utility.readStringFromURL(requestURLStock);
+		String path = "C:\\Users\\1022772\\git\\JavaTest\\jsontextstock.txt";
+		File file = new File(path);
 		
 		//Hold all company information in an ArrayList
 		ArrayList<CompanyShares> companyInfo = new ArrayList<CompanyShares>();
-		companyInfo = mapper.readValue(stockJsonFromURL, new TypeReference<ArrayList<CompanyShares>>(){});	
+		companyInfo = mapper.readValue(file, new TypeReference<ArrayList<CompanyShares>>(){});	
 		
 		int companyIndex;
 		for(companyIndex = 0;companyIndex<companyInfo.size();companyIndex++){
@@ -214,15 +224,11 @@ public class Transaction {
 	}
 
 	public void save(ArrayList<CustomerAccount> accountHolders, ArrayList<CompanyShares> companyInfo, ArrayList<TransactionDetails> transactionArray) {
-		System.out.println("This");
 		JsonUtil util = new JsonUtil();
 		String jsonCompany = util.convertJavaToJson(companyInfo);
 		System.out.println(jsonCompany);
-		//String jsonCustomers = util.convertJavaToJson(accountHolders);
-		//System.out.println(jsonCustomers);
-		System.out.println("Here");
-		
-		
+		String jsonCustomers = util.convertJavaToJson(accountHolders);
+		System.out.println(jsonCustomers);
 		String jsonTransaction = util.convertJavaToJson(transactionArray);
 		System.out.println(jsonTransaction);
 		return;

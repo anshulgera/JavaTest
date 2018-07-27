@@ -1,0 +1,24 @@
+[
+	{	
+		"name" : "anshul",
+		"holdings" : [
+								{
+									"code" : "TCS",
+									"quantity" : 20
+								}
+							]
+	},
+	{
+		"name" : "gera",
+		"holdings" : [	{
+										"code"  : "INFY",
+										"quantity" : 10
+									},
+									{
+										"code" : "RIL",
+										"quantity" : 30
+									}
+								 
+								]
+	}
+]

@@ -1,14 +1,9 @@
 package com.jda.test.oops;
-
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectWriter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.codehaus.jackson.*;
 
 import com.jda.test.logic.JsonUtil;
 import com.jda.test.logic.Utility;
