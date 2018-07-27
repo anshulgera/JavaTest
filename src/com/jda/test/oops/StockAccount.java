@@ -70,20 +70,20 @@ public class StockAccount {
 				switch(choice){
 				case 1:
 					transaction.buy(accountHolders.get(customerIndex), companyInfo, transactionArray);
-					continue;
+					break;
 				case 2:
 					transaction.sell(accountHolders.get(customerIndex), companyInfo, transactionArray );
-					continue;
+					break;
 				case 3:
 					System.out.print("Above 3");
 					transaction.save(accountHolders, companyInfo, transactionArray);
-					continue;
+					break;
 				case 4:
 					transaction.printReport(accountHolders.get(customerIndex).getHoldings());
-					continue;
+					break;
 				case 5:
 					transaction.printValuation(accountHolders.get(customerIndex).getHoldings());
-					continue;
+					break;
 				case 6:
 					return;
 					
