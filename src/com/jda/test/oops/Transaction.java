@@ -121,6 +121,7 @@ public class Transaction {
 			}
 		}
 		
+		//If stock doesn't exist in user's portfolio.
 		if(sellCodeIndex==currentHoldings.size()){
 			System.out.println("Stock doesn't exist in holdings, hence can't sell.\n Transaction Failed.");
 			return;
@@ -213,21 +214,13 @@ public class Transaction {
 		
 	}
 
-	public void save(ArrayList<CustomerAccount> accountHolders, ArrayList<CompanyShares> companyInfo, ArrayList<TransactionDetails> transactionArray) {
-		System.out.println("This");
-		JsonUtil util = new JsonUtil();
-		String jsonCompany = util.convertJavaToJson(companyInfo);
-		System.out.println(jsonCompany);
-		//String jsonCustomers = util.convertJavaToJson(accountHolders);
-		//System.out.println(jsonCustomers);
+	public void save(ArrayList<CustomerAccount> accountHolders, ArrayList<CompanyShares> companyInfo,
+	      ArrayList<TransactionDetails> transactionArray) {
 		System.out.println("Here");
 		
 		
-		String jsonTransaction = util.convertJavaToJson(transactionArray);
-		System.out.println(jsonTransaction);
-		return;
-		
 	}
+
 	
 	
 

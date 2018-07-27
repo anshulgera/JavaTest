@@ -65,7 +65,7 @@ public class StockAccount {
 		while(true){
 			System.out.println("1.Buy  2.Sell  3.Save  4.PrintReport  5.PortFolio Value  6.Exit");
 			int choice = utility.inputPositiveInteger();
-			utility.emtpyLine();
+			//utility.emtpyLine();
 			if(choice>0 && choice<7){
 				switch(choice){
 				case 1:
