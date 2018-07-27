@@ -77,24 +77,24 @@ public class StockAccount {
 			transaction = new Transaction();
 			System.out.println("1.Buy  2.Sell  3.Save  4.PrintReport  5.PortFolio Value  6.Exit");
 			int choice = utility.inputPositiveInteger();
-			utility.emtpyLine();
+			//utility.emtpyLine();
 			if(choice>0 && choice<7){
 				switch(choice){
 				case 1:
 					transaction.buy(accountHolders.get(customerIndex), companyInfo, transactionArray);
-					continue;
+					break;
 				case 2:
 					transaction.sell(accountHolders.get(customerIndex), companyInfo, transactionArray );
-					continue;
+					break;
 				case 3:
 					transaction.save(accountHolders, companyInfo, transactionArray);
-					continue;
+					break;
 				case 4:
 					transaction.printReport(accountHolders.get(customerIndex).getHoldings());
-					continue;
+					break;
 				case 5:
 					transaction.printValuation(accountHolders.get(customerIndex).getHoldings());
-					continue;
+					break;
 				case 6:
 					return;
 					

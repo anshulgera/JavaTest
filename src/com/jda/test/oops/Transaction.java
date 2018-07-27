@@ -128,6 +128,7 @@ public class Transaction {
 			}
 		}
 		
+		//If stock doesn't exist in user's portfolio.
 		if(sellCodeIndex==currentHoldings.size()){
 			System.out.println("Stock doesn't exist in holdings, hence can't sell.\n Transaction Failed.");
 			return;
@@ -231,9 +232,9 @@ public class Transaction {
 		System.out.println(jsonCustomers);
 		String jsonTransaction = util.convertJavaToJson(transactionArray);
 		System.out.println(jsonTransaction);
-		return;
-		
+		return;		
 	}
+
 	
 	
 
